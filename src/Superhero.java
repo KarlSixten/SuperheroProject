@@ -32,10 +32,13 @@ public class Superhero {
                 ", realName='" + realName + '\'' +
                 ", superpower='" + superpower + '\'' +
                 ", yearCreated=" + yearCreated +
-                ", isHuman=" + isHuman +
+                ", isHuman=" +  isHuman +
                 ", strength=" + strength +
                 '}';
     }
+
+
+
 
 
 }
