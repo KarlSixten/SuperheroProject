@@ -14,8 +14,5 @@ public class Database {
     public void addSuperhero(String superheroName, String realName, String superpower, int yearCreated, boolean isHuman, int strength) {
         //Creates a new superhero object and adds to index 0 of superheroesArrayList
         superheroesArrayList.add(0, (new Superhero(superheroName, realName, superpower, yearCreated, isHuman, strength)));
-
-        //Test printlinje
-        System.out.println(superheroesArrayList.get(0));
     }
 }

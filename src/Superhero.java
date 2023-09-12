@@ -27,14 +27,12 @@ public class Superhero {
 
     //ToString Method
     public String toString() {
-        return "Superhero{" +
-                "superheroName='" + superheroName + '\'' +
-                ", realName='" + realName + '\'' +
-                ", superpower='" + superpower + '\'' +
-                ", yearCreated=" + yearCreated +
-                ", isHuman=" +  isHuman +
-                ", strength=" + strength +
-                '}';
+        return "Superhero Name: " + superheroName + "\n" +
+                "Real name: " + realName + "\n" +
+                "Superpower: " + superpower + "\n" +
+                "Year created: " + yearCreated + "\n" +
+                "The superhero is human: " +  isHuman + "\n" +
+                "Their strength is: " + strength;
     }
 
 
