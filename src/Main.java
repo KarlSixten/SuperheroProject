@@ -1,6 +1,10 @@
 import java.util.Scanner;
 
 public class Main {
+    private Controller controller;
+    //Create scanner called input
+    Scanner input = new Scanner(System.in);
+
     public static void main(String[] args) {
 
         Main m = new Main();
@@ -75,5 +79,6 @@ public class Main {
         }
 
         while (userChoice != 9);
-    }
-}
+
+       */
+    }}
