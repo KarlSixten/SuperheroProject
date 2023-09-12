@@ -24,4 +24,18 @@ public class Superhero {
         this.isHuman = isHuman;
         this.strength = strength;
     }
+
+    //ToString Method
+    public String toString() {
+        return "Superhero{" +
+                "superheroName='" + superheroName + '\'' +
+                ", realName='" + realName + '\'' +
+                ", superpower='" + superpower + '\'' +
+                ", yearCreated=" + yearCreated +
+                ", isHuman=" + isHuman +
+                ", strength=" + strength +
+                '}';
+    }
+
+
 }
