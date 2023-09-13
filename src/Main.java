@@ -74,7 +74,7 @@ public class Main {
 
     public void searchSuperheros() {
         System.out.println("Search for name or part of superheros name: ");
-        System.out.println("Superhelten fundet: " + controller.searchSuperhero(input.nextLine()));
+        System.out.println(controller.searchSuperhero(input.nextLine()));
 
 
     }
