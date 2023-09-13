@@ -15,4 +15,17 @@ public class Database {
         //Creates a new superhero object and adds to index 0 of superheroesArrayList
         superheroesArrayList.add(0, (new Superhero(superheroName, realName, superpower, yearCreated, isHuman, strength)));
     }
+
+    public String searchSuperhero(String stringToSearchFor) {
+        String result = "";
+        for (Superhero superhero : superheroesArrayList) {
+            if (superhero.getSuperheroName().contains(stringToSearchFor)) {
+                result = superhero.getSuperheroName();
+            } else {
+                result = "No super heroes found";
+            }
+        }
+        return result;
+    }
 }
+
