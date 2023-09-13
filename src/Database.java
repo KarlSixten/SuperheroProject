@@ -21,6 +21,7 @@ public class Database {
         for (Superhero superhero : superheroesArrayList) {
             if (superhero.getSuperheroName().contains(stringToSearchFor)) {
                 result = "Superhero found: " + superhero.getSuperheroName();
+                break;
             } else {
                 result = "No super heroes found";
             }

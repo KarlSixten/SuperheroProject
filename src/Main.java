@@ -36,7 +36,7 @@ public class Main {
         else if (userChoice == 2)
             showSuperheros();
         else if (userChoice == 3)
-            searchSuperheros();
+            searchSuperhero();
     }
 
 
@@ -72,7 +72,7 @@ public class Main {
 
     }
 
-    public void searchSuperheros() {
+    public void searchSuperhero() {
         System.out.println("Search for name or part of superheros name: ");
         System.out.println(controller.searchSuperhero(input.nextLine()));
 
