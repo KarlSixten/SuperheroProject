@@ -37,6 +37,7 @@ public class Main {
             showSuperheros();
         else if (userChoice == 3)
             searchSuperhero();
+        else System.out.println("error");
     }
 
 
