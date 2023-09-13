@@ -37,7 +37,7 @@ public class Main {
             showSuperheros();
         else if (userChoice == 3)
             searchSuperhero();
-        else System.out.println("error");
+        else System.out.println("Error, enter valid number!");
     }
 
 
@@ -65,9 +65,11 @@ public class Main {
         if (controller.getSuperheroesArrayList().size() == 0) {
             System.out.println("There are no superheroes in the database.");
         } else {
-            System.out.println("Superheroes in database:");
+            System.out.println("----------------------------\n" +
+                               "Superheroes in database:\n" +
+                               "----------------------------");
             for (Superhero superhero : controller.getSuperheroesArrayList()) {
-                System.out.println(superhero);
+                System.out.println(superhero + "\n----------------------------");
             }
         }
 
