@@ -25,6 +25,10 @@ public class Superhero {
         this.strength = strength;
     }
 
+    public String getSuperheroName(){
+        return superheroName;
+    }
+
     //ToString Method
     public String toString() {
         return "Superhero Name: " + superheroName + "\n" +
