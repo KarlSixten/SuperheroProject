@@ -6,9 +6,14 @@ public class Database {
     Scanner input = new Scanner(System.in);
     //Create new Arraylist with initial capacity of 1
     private ArrayList<Superhero> superheroesArrayList = new ArrayList<Superhero>(1);
+    private ArrayList<Superhero> searchMatches = new ArrayList<Superhero>();
 
     public ArrayList<Superhero> getSuperheroesArrayList() {
         return superheroesArrayList;
+
+        }
+    public ArrayList<Superhero> getSearchMatches(){
+        return searchMatches;
     }
 
     public void addSuperhero(String superheroName, String realName, String superpower, int yearCreated, boolean isHuman, int strength) {
@@ -32,5 +37,8 @@ public class Database {
         } else {
             return "Superheros found!: \n" + stringBuilder.toString();
         }
+    }
+    public void editSuperhero(int numberToEdit){
+
     }
 }
