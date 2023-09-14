@@ -1,11 +1,11 @@
 import java.util.Scanner;
 
-public class UserInterface {
+
+public class    UserInterface {
     Database superheroDatabase = new Database();
     private Controller controller = new Controller(superheroDatabase);
     //Create scanner called input
     Scanner input = new Scanner(System.in);
-
     public void startProgram() {
 
         //Tilføjer to superheros til test af f.eks. søgning i lister
@@ -74,7 +74,7 @@ public class UserInterface {
     }
     public void editSuperhero(){
         int indexToEdit;
-
+        String realIndexToEDdit;
         System.out.println("Search for superhero to edit: ");
         System.out.println(controller.searchSuperhero(input.nextLine()));
 
@@ -91,17 +91,49 @@ public class UserInterface {
         System.out.println("6. Strength: " + controller.getSearchMatches().get(indexToEdit).getStrength());
 
 
-        /*
+
+
         switch (input.nextInt()) {
-
             case (1) :
-                setSuperheroName = (input.nextLine());
-                break;
-            case (2) :
-                setRealName = (input.nextLine());
+                System.out.println("Enter new superhero name: ");
+                realIndexToEDdit = (input.nextLine());
+                Superhero superhero = controller.getSuperheroesArrayList().get(indexToEdit);
+                String newSuperheroName = input.nextLine();
+                superhero.setSuperheroName(newSuperheroName);
                 break;
 
+       /*     case (2) :
+                System.out.println("Enter new real name: ");
+                realIndexToEDdit = (input.nextLine());
+                superhero.setRealName(input.nextLine());
+                break;
+            case (3) :
+                System.out.println("Indtast ny superpower: ");
+                realIndexToEDdit = (input.nextLine());
+                superhero.setSuperpower(input.nextLine());
+                break;
+            case (4) :
+                System.out.println("Indtast nyt årstal: ");
+                realIndexToEDdit = (input.nextLine());
+                superhero.setYearCreated(input.nextInt());
+                break;
+            case (5) :
+                System.out.println("Indtast om superhelten er menneske: ");
+                realIndexToEDdit = (input.nextLine());
+                superhero.setIsHuman(input.nextBoolean());
+                break;*/
+          /* case (6) :
+                System.out.println("Indtast ny styrke: ");
+                superhero.setStrength(input.nextInt());
+                break;
+*/
+
+
+            default:
+               //ugyldigt valg
+            System.out.println("Error, incompatibale choice");
+                break;
         }
-        */
+
     }
 }
