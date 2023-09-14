@@ -38,6 +38,9 @@ public class Superhero {
                 "The superhero is human: " +  isHuman + "\n" +
                 "Their strength is: " + strength;
     }
+    public String getToString(){
+        return toString();
+    }
 
 
 

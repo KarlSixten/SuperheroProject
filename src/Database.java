@@ -20,7 +20,7 @@ public class Database {
         String result = "";
         for (Superhero superhero : superheroesArrayList) {
             if (superhero.getSuperheroName().contains(stringToSearchFor)) {
-                result = "Superhero found: " + superhero.getSuperheroName();
+                result = "Superhero found: " + superhero.getToString();
                 break;
             } else {
                 result = "No super heroes found";
