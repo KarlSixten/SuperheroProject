@@ -97,36 +97,39 @@ public class    UserInterface {
             case (1) :
                 System.out.println("Enter new superhero name: ");
                 realIndexToEDdit = (input.nextLine());
-                Superhero superhero = controller.getSuperheroesArrayList().get(indexToEdit);
-                String newSuperheroName = input.nextLine();
-                superhero.setSuperheroName(newSuperheroName);
+               controller.getSuperheroesArrayList().get(indexToEdit).setSuperheroName(input.nextLine());
+
+
                 break;
 
-       /*     case (2) :
+            case (2) :
                 System.out.println("Enter new real name: ");
                 realIndexToEDdit = (input.nextLine());
-                superhero.setRealName(input.nextLine());
+                controller.getSuperheroesArrayList().get(indexToEdit).setRealName(input.nextLine());
                 break;
-            case (3) :
+
+                case (3) :
                 System.out.println("Indtast ny superpower: ");
                 realIndexToEDdit = (input.nextLine());
-                superhero.setSuperpower(input.nextLine());
+                    controller.getSuperheroesArrayList().get(indexToEdit).setSuperheroName(input.nextLine());
                 break;
-            case (4) :
-                System.out.println("Indtast nyt årstal: ");
+
+                case (4) :
+                System.out.println("Enter new year of creation: ");
                 realIndexToEDdit = (input.nextLine());
-                superhero.setYearCreated(input.nextInt());
+                controller.getSuperheroesArrayList().get(indexToEdit).setYearCreated(input.nextInt());
                 break;
+
             case (5) :
                 System.out.println("Indtast om superhelten er menneske: ");
                 realIndexToEDdit = (input.nextLine());
-                superhero.setIsHuman(input.nextBoolean());
-                break;*/
-          /* case (6) :
-                System.out.println("Indtast ny styrke: ");
-                superhero.setStrength(input.nextInt());
+                controller.getSuperheroesArrayList().get(indexToEdit).setIsHuman(input.nextBoolean());
                 break;
-*/
+           case (6) :
+                System.out.println("Indtast ny styrke: ");
+                realIndexToEDdit = (input.nextLine());
+                controller.getSuperheroesArrayList().get(indexToEdit).setStrength(input.nextInt());
+                break;
 
 
             default:
