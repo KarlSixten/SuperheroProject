@@ -3,6 +3,10 @@ import java.util.ArrayList;
 public class Controller {
     private Database superheroDatabase;
 
+    public ArrayList<Superhero> getSearchMatches(){
+        return superheroDatabase.getSearchMatches();
+    }
+
     public Controller(Database superheroDatabase) {
         this.superheroDatabase = superheroDatabase;
     }
@@ -18,6 +22,7 @@ public class Controller {
     public String searchSuperhero(String stringToSearchFor) {
         return superheroDatabase.searchSuperhero(stringToSearchFor);
     }
-
-
+    public void editSuperhero(int superheroToEdit){
+       superheroDatabase.editSuperhero(superheroToEdit);
+    }
 }

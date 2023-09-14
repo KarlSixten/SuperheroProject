@@ -17,16 +17,20 @@ public class Database {
     }
 
     public String searchSuperhero(String stringToSearchFor) {
-        String result = "";
+        StringBuilder stringBuilder = new StringBuilder();
         for (Superhero superhero : superheroesArrayList) {
             if (superhero.getSuperheroName().contains(stringToSearchFor)) {
-                result = "Superhero found: " + superhero.getToString();
-                break;
-            } else {
-                result = "No super heroes found";
+                searchMatches.add(superhero);
+                stringBuilder.append(searchMatches.indexOf(superhero) + 1);
+                stringBuilder.append(". ");
+                stringBuilder.append(superhero.getSuperheroName());
+                stringBuilder.append("\n");
             }
         }
-        return result;
+        if (searchMatches.isEmpty()) {
+            return "No superheros found :(";
+        } else {
+            return "Superheros found!: \n" + stringBuilder.toString();
+        }
     }
 }
-

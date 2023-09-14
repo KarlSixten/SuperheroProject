@@ -25,8 +25,54 @@ public class Superhero {
         this.strength = strength;
     }
 
+    //Gettere
     public String getSuperheroName(){
         return superheroName;
+    }
+
+    public String getRealName() {
+        return realName;
+    }
+
+    public String getSuperpower() {
+        return superpower;
+    }
+
+    public int getYearCreated() {
+        return yearCreated;
+    }
+
+    public boolean getIsHuman() {
+        return isHuman;
+    }
+
+    public int getStrength() {
+        return strength;
+    }
+
+    //Settere
+    public void setSuperheroName(String superheroName) {
+        this.superheroName = superheroName;
+    }
+
+    public void setRealName(String realName) {
+        this.realName = realName;
+    }
+
+    public void setSuperpower(String superpower) {
+        this.superpower = superpower;
+    }
+
+    public void setYearCreated(int yearCreated) {
+        this.yearCreated = yearCreated;
+    }
+
+    public void setIsHuman(boolean isHuman) {
+        this.isHuman = isHuman;
+    }
+
+    public void setStrength(int strength) {
+        this.strength = strength;
     }
 
     //ToString Method
@@ -38,12 +84,4 @@ public class Superhero {
                 "The superhero is human: " +  isHuman + "\n" +
                 "Their strength is: " + strength;
     }
-    public String getToString(){
-        return toString();
-    }
-
-
-
-
-
 }
