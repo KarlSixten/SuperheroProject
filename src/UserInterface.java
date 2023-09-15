@@ -37,6 +37,7 @@ public class    UserInterface {
                 editSuperhero();
             else if (userChoice == 9)
                 System.exit(0);
+            else System.out.println("Error, enter valid number");
         } catch (Exception e) {
             System.out.println("Error, enter valid number!");
         }
@@ -148,15 +149,21 @@ public class    UserInterface {
                     break;
             }
         } catch (Exception e){
+            System.out.println("Error must enter a valid number");
+            input.nextLine(); // scanner bug reset scanneren
+            controller.getSuperheroesArrayList().get(indexToEdit).setStrength(input.nextInt());
+            System.out.println("The new data for the super hero: \n" + controller.getSuperheroesArrayList().get(indexToEdit));
+
+        }
+        /*catch (Exception e){
             System.out.println("Error, must enter a valid number");
             controller.getSuperheroesArrayList().get(indexToEdit).setStrength(input.nextInt());
             controller.getSuperheroesArrayList().get(indexToEdit).setYearCreated(input.nextInt());
             controller.getSuperheroesArrayList().get(indexToEdit).setIsHuman(input.nextBoolean());
             System.out.println("The new data for the superhero:\n" + controller.getSuperheroesArrayList().get(indexToEdit));
-        }
+        }*/
 
-        }
     }
-
+}
 
 
