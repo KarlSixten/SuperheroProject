@@ -109,7 +109,7 @@ public class    UserInterface {
             case (3):
                 System.out.println("Indtast ny superpower: ");
                 input.nextLine();
-                controller.getSuperheroesArrayList().get(indexToEdit).setSuperheroName(input.nextLine());
+                controller.getSuperheroesArrayList().get(indexToEdit).setSuperpower(input.nextLine());
                 System.out.println("The new data for the superhero:\n" +controller.getSuperheroesArrayList().get(indexToEdit));
                 break;
 
