@@ -13,14 +13,20 @@ public class    UserInterface {
         //Tilføjer to superheros til test af f.eks. søgning i lister
         controller.addSuperhero("Batman", "Bruce Wayne", "Badass", 1966, true, 62);
         controller.addSuperhero("Superman", "Vides ikke", "Ikke lige så sej", 1951, true, 84);
-
+        String newuserChoice;
         int userChoice = -1;
         while (userChoice != 9) {
-            System.out.println("Welcome to the superhero database.\n1. Create new superhero.\n2. Show superheroes.\n3. Find superhero.\n4. Edit super hero.\n9. End");
+            try {
+                System.out.println("Welcome to the superhero database.\n1. Create new superhero.\n2. Show superheroes.\n3. Find superhero.\n4. Edit super hero.\n9. End");
+                userChoice = input.nextInt();
+                handleUserChoice(userChoice);
+            } catch (InputMismatchException e) {
+                System.out.println("Error enter valid number, try again");
+                input.nextLine();
 
-            userChoice = input.nextInt();
-            input.nextLine(); //Håndtering af bug
-            handleUserChoice(userChoice);
+            }
+
+
         }
     }
 
@@ -39,7 +45,8 @@ public class    UserInterface {
                 System.exit(0);
             else System.out.println("Error, enter valid number");
         } catch (Exception e) {
-            System.out.println("Error, enter valid number!");
+            String userInput = input.nextLine();
+            System.out.println("Error, enter valid number!" + userInput + "is not a valid line");
         }
     }
 
