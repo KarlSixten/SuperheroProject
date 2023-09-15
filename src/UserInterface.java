@@ -7,6 +7,7 @@ public class    UserInterface {
     private Controller controller = new Controller(superheroDatabase);
     //Create scanner called input
     Scanner input = new Scanner(System.in);
+
     public void startProgram() {
 
         //Tilføjer to superheros til test af f.eks. søgning i lister
@@ -41,25 +42,25 @@ public class    UserInterface {
         }
     }
 
-        public void addSuperhero() {
-            System.out.println("What is the superheros superhero name?");
-            String superheroName = input.nextLine();
-            System.out.println("What is the superheros real name?");
-            String realName = input.nextLine();
-            System.out.println("What is the superheros superpower?");
-            String superpower = input.nextLine();
-            System.out.println("When was this superhero created?");
-            int yearCreated = input.nextInt();
-            System.out.println("Is the superhero human? y/n");
-            boolean isHuman = false;
-            if (input.next().equalsIgnoreCase("y")) {
-                isHuman = true;
-            }
-            System.out.println("What is the superheros strength? [1-100]");
-            int strength = input.nextInt();
-
-            controller.addSuperhero(superheroName, realName, superpower, yearCreated, isHuman, strength);
+    public void addSuperhero() {
+        System.out.println("What is the superheros superhero name?");
+        String superheroName = input.nextLine();
+        System.out.println("What is the superheros real name?");
+        String realName = input.nextLine();
+        System.out.println("What is the superheros superpower?");
+        String superpower = input.nextLine();
+        System.out.println("When was this superhero created?");
+        int yearCreated = input.nextInt();
+        System.out.println("Is the superhero human? y/n");
+        boolean isHuman = false;
+        if (input.next().equalsIgnoreCase("y")) {
+            isHuman = true;
         }
+        System.out.println("What is the superheros strength? [1-100]");
+        int strength = input.nextInt();
+
+        controller.addSuperhero(superheroName, realName, superpower, yearCreated, isHuman, strength);
+    }
 
     public void showSuperheros() {
         if (controller.getSuperheroesArrayList().isEmpty()) {
@@ -78,7 +79,8 @@ public class    UserInterface {
         System.out.println("Search for name or part of superheros name: ");
         System.out.println(controller.searchSuperhero(input.nextLine()));
     }
-    public void editSuperhero(){
+
+    public void editSuperhero() {
         int indexToEdit;
         int realIndexToEDdit;
         System.out.println("Search for superhero to edit: ");
@@ -105,26 +107,26 @@ public class    UserInterface {
                     System.out.println("The new data for the superhero:\n" + controller.getSuperheroesArrayList().get(indexToEdit));
                     break;
 
-            case (2):
-                System.out.println("Enter new real name: ");
-                input.nextLine();
-                controller.getSuperheroesArrayList().get(indexToEdit).setRealName(input.nextLine());
-                System.out.println("The new data for the superhero:\n" +controller.getSuperheroesArrayList().get(indexToEdit));
-                break;
+                case (2):
+                    System.out.println("Enter new real name: ");
+                    input.nextLine();
+                    controller.getSuperheroesArrayList().get(indexToEdit).setRealName(input.nextLine());
+                    System.out.println("The new data for the superhero:\n" + controller.getSuperheroesArrayList().get(indexToEdit));
+                    break;
 
-            case (3):
-                System.out.println("Indtast ny superpower: ");
-                input.nextLine();
-                controller.getSuperheroesArrayList().get(indexToEdit).setSuperpower(input.nextLine());
-                System.out.println("The new data for the superhero:\n" +controller.getSuperheroesArrayList().get(indexToEdit));
-                break;
+                case (3):
+                    System.out.println("Indtast ny superpower: ");
+                    input.nextLine();
+                    controller.getSuperheroesArrayList().get(indexToEdit).setSuperpower(input.nextLine());
+                    System.out.println("The new data for the superhero:\n" + controller.getSuperheroesArrayList().get(indexToEdit));
+                    break;
 
-            case (4):
-                System.out.println("Enter new year of creation: ");
-                input.nextLine();
-                controller.getSuperheroesArrayList().get(indexToEdit).setYearCreated(input.nextInt());
-                System.out.println("The new data for the superhero:\n" +controller.getSuperheroesArrayList().get(indexToEdit));
-                break;
+                case (4):
+                    System.out.println("Enter new year of creation: ");
+                    input.nextLine();
+                    controller.getSuperheroesArrayList().get(indexToEdit).setYearCreated(input.nextInt());
+                    System.out.println("The new data for the superhero:\n" + controller.getSuperheroesArrayList().get(indexToEdit));
+                    break;
 
                 case (5):
                     System.out.println("Is the superhero human: ");
