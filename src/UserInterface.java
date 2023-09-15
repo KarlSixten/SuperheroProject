@@ -22,7 +22,7 @@ public class    UserInterface {
                 handleUserChoice(userChoice);
             } catch (InputMismatchException e) {
                 System.out.println("Error enter valid number, try again");
-                input.nextLine();
+                input.nextLine(); //reset af scanneren - håndtering af scanner bug
 
             }
 
