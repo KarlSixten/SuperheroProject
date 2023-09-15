@@ -96,37 +96,41 @@ public class    UserInterface {
                 System.out.println("Enter new superhero name: ");
                 input.nextLine();
                 controller.getSuperheroesArrayList().get(indexToEdit).setSuperheroName(input.nextLine());
-
-
+                System.out.println("The new data for the superhero:\n" +controller.getSuperheroesArrayList().get(indexToEdit));
                 break;
 
             case (2):
                 System.out.println("Enter new real name: ");
                 input.nextLine();
                 controller.getSuperheroesArrayList().get(indexToEdit).setRealName(input.nextLine());
+                System.out.println("The new data for the superhero:\n" +controller.getSuperheroesArrayList().get(indexToEdit));
                 break;
 
             case (3):
                 System.out.println("Indtast ny superpower: ");
                 input.nextLine();
                 controller.getSuperheroesArrayList().get(indexToEdit).setSuperheroName(input.nextLine());
+                System.out.println("The new data for the superhero:\n" +controller.getSuperheroesArrayList().get(indexToEdit));
                 break;
 
             case (4):
                 System.out.println("Enter new year of creation: ");
                 input.nextLine();
                 controller.getSuperheroesArrayList().get(indexToEdit).setYearCreated(input.nextInt());
+                System.out.println("The new data for the superhero:\n" +controller.getSuperheroesArrayList().get(indexToEdit));
                 break;
 
             case (5):
                 System.out.println("Indtast om superhelten er menneske: ");
                 input.nextLine();
                 controller.getSuperheroesArrayList().get(indexToEdit).setIsHuman(input.nextBoolean());
+                System.out.println("The new data for the superhero:\n" +controller.getSuperheroesArrayList().get(indexToEdit));
                 break;
             case (6):
                 System.out.println("Indtast ny styrke: ");
                 input.nextLine();
                 controller.getSuperheroesArrayList().get(indexToEdit).setStrength(input.nextInt());
+                System.out.println("The new data for the superhero:\n" +controller.getSuperheroesArrayList().get(indexToEdit));
                 break;
 
 
