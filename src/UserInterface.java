@@ -25,14 +25,12 @@ public class    UserInterface {
                 input.nextLine(); //reset af scanneren - håndtering af scanner bug
 
             }
-
-
         }
     }
 
     public void handleUserChoice(int userChoice) {
 
-        try {
+
             if (userChoice == 1)
                 addSuperhero();
             else if (userChoice == 2)
@@ -44,10 +42,8 @@ public class    UserInterface {
             else if (userChoice == 9)
                 System.exit(0);
             else System.out.println("Error, enter valid number");
-        } catch (Exception e) {
-            String userInput = input.nextLine();
-            System.out.println("Error, enter valid number!" + userInput + "is not a valid line");
-        }
+
+
     }
 
     public void addSuperhero() {
@@ -172,5 +168,4 @@ public class    UserInterface {
 
     }
 }
-
 
