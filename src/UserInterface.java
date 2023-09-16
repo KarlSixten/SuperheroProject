@@ -86,8 +86,8 @@ public class    UserInterface {
 
     public void editSuperhero() {
         int indexToEdit;
-        int realIndexToEDdit;
         System.out.println("Search for superhero to edit: ");
+        input.nextLine();
         System.out.println(controller.searchSuperhero(input.nextLine()));
 
         System.out.println("Select the superhero you want to edit: ");
