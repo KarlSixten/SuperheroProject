@@ -151,13 +151,15 @@ public class    UserInterface {
                     System.out.println("Error, incompatibale choice");
                     break;
             }
-        } catch (Exception e){
-            System.out.println("Error must enter a valid number");
-            input.nextLine(); // scanner bug reset scanneren
-            controller.getSuperheroesArrayList().get(indexToEdit).setStrength(input.nextInt());
-            System.out.println("The new data for the super hero: \n" + controller.getSuperheroesArrayList().get(indexToEdit));
 
         }
+        catch (Exception e){
+            System.out.println("Error must enter a valid number");
+            input.nextLine();
+            controller.getSuperheroesArrayList().get(indexToEdit).setStrength(input.nextInt());
+            System.out.println("The new data for the super hero: \n" + controller.getSuperheroesArrayList().get(indexToEdit));
+        }
+
         /*catch (Exception e){
             System.out.println("Error, must enter a valid number");
             controller.getSuperheroesArrayList().get(indexToEdit).setStrength(input.nextInt());
