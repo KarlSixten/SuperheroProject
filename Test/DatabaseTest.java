@@ -13,22 +13,23 @@ class DatabaseTest {
 
     @BeforeEach
     void setUp() {
-        //arrange
         database = new Database();
         s1 = new Superhero("Spiderman", "Aner det ikke","Edderkoppesværd", 1990, true, 1000);
         s2 = new Superhero("Ironman", "Vides ikke","Jern", 1980, true, 300);
-        //act
         database.getSuperheroesArrayList().addAll(List.of(s1,s2));
 
     }
 
     @AfterEach
     void tearDown() {
+        database = null;
     }
 
     @Test
     void getSearchMatches() {
-
+        String expectedName = "Spiderman";
+        String actualName = s1.getSuperheroName();
+        assertEquals(expectedName, actualName);
     }
 
     @Test
@@ -40,5 +41,12 @@ class DatabaseTest {
         database.addSuperhero("Holger", "Rune", "Tennisketsjer",2000, true, 7);
         //assert
         assertEquals(expectedSize, database.getSuperheroesArrayList().size());
+    }
+    @Test
+
+    void editSuperhero(){
+        int expectedStrength = 1000;
+        int actualStrength = s1.getStrength();
+        assertEquals(expectedStrength, actualStrength);
     }
 }
