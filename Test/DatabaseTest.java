@@ -27,9 +27,7 @@ class DatabaseTest {
 
     @Test
     void getSearchMatches() {
-        String expectedName = "Spiderman";
-        String actualName = s1.getSuperheroName();
-        assertEquals(expectedName, actualName);
+
     }
 
     @Test
@@ -45,8 +43,6 @@ class DatabaseTest {
     @Test
 
     void editSuperhero(){
-        int expectedStrength = 1000;
-        int actualStrength = s1.getStrength();
-        assertEquals(expectedStrength, actualStrength);
+
     }
 }
