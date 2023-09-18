@@ -2,7 +2,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 
-public class    UserInterface {
+public class UserInterface {
     Database superheroDatabase = new Database();
     private Controller controller = new Controller(superheroDatabase);
     //Create scanner called input
@@ -31,17 +31,17 @@ public class    UserInterface {
     public void handleUserChoice(int userChoice) {
 
 
-            if (userChoice == 1)
-                addSuperhero();
-            else if (userChoice == 2)
-                showSuperheros();
-            else if (userChoice == 3)
-                searchSuperhero();
-            else if (userChoice == 4)
-                editSuperhero();
-            else if (userChoice == 9)
-                System.exit(0);
-            else System.out.println("Error, enter valid number");
+        if (userChoice == 1)
+            addSuperhero();
+        else if (userChoice == 2)
+            showSuperheros();
+        else if (userChoice == 3)
+            searchSuperhero();
+        else if (userChoice == 4)
+            editSuperhero();
+        else if (userChoice == 9)
+            System.exit(0);
+        else System.out.println("Error, enter valid number");
 
 
     }
@@ -81,6 +81,7 @@ public class    UserInterface {
 
     public void searchSuperhero() {
         System.out.println("Search for name or part of superheros name: ");
+        input.nextLine();
         System.out.println(controller.searchSuperhero(input.nextLine()));
     }
 
@@ -134,10 +135,14 @@ public class    UserInterface {
 
                 case (5):
                     System.out.println("Is the superhero human: ");
-                    input.nextLine();
-                    controller.getSuperheroesArrayList().get(indexToEdit).setIsHuman(input.nextBoolean());
-                    System.out.println("The new data for the superhero:\n" + controller.getSuperheroesArrayList().get(indexToEdit));
-                    break;
+                    boolean isHuman = false;
+                    if (input.next().equalsIgnoreCase("y")) {
+                        isHuman = true;
+                        input.nextLine();
+                        controller.getSuperheroesArrayList().get(indexToEdit).setIsHuman(isHuman);
+                        System.out.println("The new data for the superhero:\n" + controller.getSuperheroesArrayList().get(indexToEdit));
+                        break;
+                    }
                 case (6):
                     System.out.println("Put new strength [1-100]: ");
                     input.nextLine();
@@ -152,21 +157,14 @@ public class    UserInterface {
                     break;
             }
 
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Error must enter a valid number");
             input.nextLine();
             controller.getSuperheroesArrayList().get(indexToEdit).setStrength(input.nextInt());
-            System.out.println("The new data for the super hero: \n" + controller.getSuperheroesArrayList().get(indexToEdit));
-        }
+            System.out.println("New data of the superhero: \n" + controller.getSuperheroesArrayList().get(indexToEdit));
 
-        /*catch (Exception e){
-            System.out.println("Error, must enter a valid number");
-            controller.getSuperheroesArrayList().get(indexToEdit).setStrength(input.nextInt());
-            controller.getSuperheroesArrayList().get(indexToEdit).setYearCreated(input.nextInt());
-            controller.getSuperheroesArrayList().get(indexToEdit).setIsHuman(input.nextBoolean());
-            System.out.println("The new data for the superhero:\n" + controller.getSuperheroesArrayList().get(indexToEdit));
-        }*/
+
+        }
 
     }
 }
