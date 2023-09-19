@@ -51,4 +51,27 @@ class DatabaseTest {
     void editSuperhero(){
 
     }
+    @Test
+    void deleteSuperhero(){
+        int expectedSize = database.getSuperheroesArrayList().size();
+        s1 = new Superhero("Spiderman", "Aner det ikke","Edderkoppesværd", 1990, true, 1000);
+        database.getSuperheroesArrayList().add(s1);
+        database.getSuperheroesArrayList().remove(s1);
+        int actualSize  = database.getSuperheroesArrayList().size();
+
+
+        assertEquals(expectedSize, actualSize);
+    }
+    @Test
+    void deleteNewSuperhero(){
+        s1 = new Superhero("Spiderman", "Aner det ikke","Edderkoppesværd", 1990, true, 1000);
+        database.getSuperheroesArrayList().add(s1);
+
+        boolean expectedResult = database.getSearchMatches().isEmpty();
+        database.getSuperheroesArrayList().remove(s1);
+        database.searchSuperhero(s1.getSuperheroName());
+        boolean actualResult = database.getSearchMatches().isEmpty();
+
+        assertEquals(expectedResult, actualResult);
+    }
 }
