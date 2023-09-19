@@ -1,7 +1,6 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-
 public class UserInterface {
     Database superheroDatabase = new Database();
     private Controller controller = new Controller(superheroDatabase);
@@ -9,28 +8,29 @@ public class UserInterface {
     Scanner input = new Scanner(System.in);
 
     public void startProgram() {
-
         //Tilføjer to superheros til test af f.eks. søgning i lister
         controller.addSuperhero("Batman", "Bruce Wayne", "Badass", 1966, true, 62);
         controller.addSuperhero("Superman", "Vides ikke", "Ikke lige så sej", 1951, true, 84);
-        String newuserChoice;
         int userChoice = -1;
         while (userChoice != 9) {
             try {
-                System.out.println("Welcome to the superhero database.\n1. Create new superhero.\n2. Show superheroes.\n3. Find superhero.\n4. Edit super hero.\n9. End");
+                System.out.println("Welcome to the superhero database.\n" +
+                        "1. Create new superhero.\n" +
+                        "2. Show superheroes.\n" +
+                        "3. Find superhero.\n" +
+                        "4. Edit superhero.\n" +
+                        "5. Delete superhero.\n" +
+                        "9. End");
                 userChoice = input.nextInt();
                 handleUserChoice(userChoice);
             } catch (InputMismatchException e) {
                 System.out.println("Error enter valid number, try again");
                 input.nextLine(); //reset af scanneren - håndtering af scanner bug
-
             }
         }
     }
 
     public void handleUserChoice(int userChoice) {
-
-
         if (userChoice == 1)
             addSuperhero();
         else if (userChoice == 2)
@@ -44,8 +44,6 @@ public class UserInterface {
         else if (userChoice == 9)
             System.exit(0);
         else System.out.println("Error, enter valid number");
-
-
     }
 
     public void addSuperhero() {
@@ -72,9 +70,10 @@ public class UserInterface {
         if (controller.getSuperheroesArrayList().isEmpty()) {
             System.out.println("There are no superheroes in the database.");
         } else {
-            System.out.println("----------------------------\n" +
-                    "Superheroes in database:\n" +
-                    "----------------------------");
+            System.out.println("""
+                    ------------------------
+                    Superheroes in database:
+                    ------------------------""");
             for (Superhero superhero : controller.getSuperheroesArrayList()) {
                 System.out.println(superhero + "\n----------------------------");
             }
@@ -168,41 +167,39 @@ public class UserInterface {
                     System.out.println("The new data for the superhero:\n" + controller.getSuperheroesArrayList().get(indexToEdit));
                     break;
 
-
                 default:
                     //ugyldigt valg
-                    System.out.println("Error, incompatibale choice");
+                    System.out.println("Error, incompatible choice");
                     break;
             }
-
         } catch (Exception e) {
             System.out.println("Error must enter a valid number");
             input.nextLine();
             controller.getSuperheroesArrayList().get(indexToEdit).setStrength(input.nextInt());
             System.out.println("New data of the superhero: \n" + controller.getSuperheroesArrayList().get(indexToEdit));
-
-
         }
-
     }
 
     public void deleteSuperhero() {
         int count = 1;
-        int indexToDelete;
-        if (controller.getSuperheroesArrayList().isEmpty()) {
-            System.out.println("There are no superheroes in the database.");
-        } else {
-            System.out.println("----------------------------\n" +
-                    "Superheroes in database:\n" +
-                    "----------------------------");
-            for (Superhero superhero : controller.getSuperheroesArrayList()) {
-                System.out.println(count + ". " + superhero.getSuperheroName() + "\n");
-                count++;
+        try {
+            if (controller.getSuperheroesArrayList().isEmpty()) {
+                System.out.println("There are no superheroes in the database.");
+            } else {
+                System.out.println("""
+                        ------------------------
+                        Superheroes in database:
+                        ------------------------""");
+                for (Superhero superhero : controller.getSuperheroesArrayList()) {
+                    System.out.println(count + ". " + superhero.getSuperheroName() + "\n");
+                    count++;
+                }
+                System.out.println("Select the Superhero you want to delete from the database: ");
+                controller.deleteSuperhero(input.nextInt() - 1);
+                System.out.println("The superhero was deleted.");
             }
+        } catch (Exception e) {
+            System.out.println("Error, try again!");
         }
-        System.out.println("Select the Superhero you want to delete from the database: ");
-        controller.getSuperheroesArrayList().remove(input.nextInt() - 1);
-
     }
 }
-

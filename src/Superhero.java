@@ -6,16 +6,7 @@ public class Superhero {
     private boolean isHuman;
     private int strength;
 
-    //Constructor no superhero name
-    public Superhero(String realName, String superpower, int yearCreated, boolean isHuman, int strength) {
-        this.realName = realName;
-        this.superpower = superpower;
-        this.yearCreated = yearCreated;
-        this.isHuman = isHuman;
-        this.strength = strength;
-    }
-
-    //Constructor with superhero name
+    //Constructor
     public Superhero(String superheroName, String realName, String superpower, int yearCreated, boolean isHuman, int strength) {
         this.superheroName = superheroName;
         this.realName = realName;
@@ -25,7 +16,7 @@ public class Superhero {
         this.strength = strength;
     }
 
-    //Gettere
+    //Getters
     public String getSuperheroName(){
         return superheroName;
     }
@@ -50,7 +41,7 @@ public class Superhero {
         return strength;
     }
 
-    //Settere
+    //Setters
     public void setSuperheroName(String superheroName) {
         this.superheroName = superheroName;
     }

@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class Controller {
     private Database superheroDatabase;
 
-    public ArrayList<Superhero> getSearchMatches(){
+    public ArrayList<Superhero> getSearchMatches() {
         return superheroDatabase.getSearchMatches();
     }
 
@@ -15,14 +15,16 @@ public class Controller {
         superheroDatabase.addSuperhero(superheroName, realName, superpower, yearCreated, isHuman, strength);
 
     }
-    public ArrayList<Superhero> getSuperheroesArrayList(){
+
+    public ArrayList<Superhero> getSuperheroesArrayList() {
         return superheroDatabase.getSuperheroesArrayList();
     }
 
     public ArrayList<Superhero> searchSuperhero(String stringToSearchFor) {
         return superheroDatabase.searchSuperhero(stringToSearchFor);
     }
-    public void editSuperhero(int superheroToEdit){
-       superheroDatabase.editSuperhero(superheroToEdit);
+
+    public void deleteSuperhero(int indexToDelete) {
+        superheroDatabase.deleteSuperhero(indexToDelete);
     }
 }
