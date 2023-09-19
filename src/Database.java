@@ -32,4 +32,7 @@ public class Database {
     public void deleteSuperhero(int indexToDelete) {
         superheroesArrayList.remove(indexToDelete);
     }
+    public void deleteSuperhero (){
+
+    }
 }
