@@ -17,7 +17,8 @@ public class UserInterface {
         int userChoice = -1;
         while (userChoice != 9) {
             try {
-                System.out.println("Welcome to the superhero database.\n1. Create new superhero.\n2. Show superheroes.\n3. Find superhero.\n4. Edit super hero.\n9. End");
+                System.out.println("Welcome to the superhero database.\n1. Create new superhero.\n2. Show superheroes.\n3. Find superhero." +
+                        "\n4. Edit super hero.\n5. Delete superhero.\n9. End");
                 userChoice = input.nextInt();
                 handleUserChoice(userChoice);
             } catch (InputMismatchException e) {
