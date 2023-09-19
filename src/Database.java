@@ -1,4 +1,5 @@
 import  java.util.ArrayList;
+import java.util.Collection;
 import java.util.Scanner;
 
 public class Database {
@@ -21,23 +22,17 @@ public class Database {
         superheroesArrayList.add(0, (new Superhero(superheroName, realName, superpower, yearCreated, isHuman, strength)));
     }
 
-    public String searchSuperhero(String stringToSearchFor) {
-        StringBuilder stringBuilder = new StringBuilder();
+
+    public ArrayList<Superhero> searchSuperhero(String stringToSearchFor) {
+        searchMatches.clear();
         for (Superhero superhero : superheroesArrayList) {
             if (superhero.getSuperheroName().contains(stringToSearchFor)) {
                 searchMatches.add(superhero);
-                stringBuilder.append(searchMatches.indexOf(superhero) + 1);
-                stringBuilder.append(". ");
-                stringBuilder.append(superhero.getSuperheroName());
-                stringBuilder.append("\n");
             }
         }
-        if (searchMatches.isEmpty()) {
-            return "No superheros found :(";
-        } else {
-            return "Superheros found!: \n" + stringBuilder.toString();
-        }
+        return searchMatches;
     }
+
     public void editSuperhero(int numberToEdit){
 
     }

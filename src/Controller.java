@@ -19,7 +19,7 @@ public class Controller {
         return superheroDatabase.getSuperheroesArrayList();
     }
 
-    public String searchSuperhero(String stringToSearchFor) {
+    public ArrayList<Superhero> searchSuperhero(String stringToSearchFor) {
         return superheroDatabase.searchSuperhero(stringToSearchFor);
     }
     public void editSuperhero(int superheroToEdit){

@@ -80,16 +80,32 @@ public class UserInterface {
     }
 
     public void searchSuperhero() {
+        StringBuilder stringBuilder = new StringBuilder();
         System.out.println("Search for name or part of superheros name: ");
-        input.nextLine();
-        System.out.println(controller.searchSuperhero(input.nextLine()));
-    }
+        String stringToSearchFor = input.nextLine();
+        stringToSearchFor = input.nextLine(); //Ekstra input linje pga. scanner bug.
+            for (Superhero superhero : controller.searchSuperhero(stringToSearchFor)) {
+                if (superhero.getSuperheroName().contains(stringToSearchFor)) {
+                    stringBuilder.append(controller.getSearchMatches().indexOf(superhero) + 1);
+                    stringBuilder.append(". ");
+                    stringBuilder.append(superhero.getSuperheroName());
+                    stringBuilder.append("\n");
+                }
+            }
+            if (controller.getSearchMatches().isEmpty()) {
+                System.out.println("No superheros found :(");
+            } else {
+                System.out.println("Superheros found!: \n" + stringBuilder.toString());
+            }
+        }
 
     public void editSuperhero() {
         int indexToEdit;
-        System.out.println("Search for superhero to edit: ");
-        input.nextLine();
-        System.out.println(controller.searchSuperhero(input.nextLine()));
+        searchSuperhero();
+
+        while (controller.getSearchMatches().isEmpty()) {
+            searchSuperhero();
+        }
 
         System.out.println("Select the superhero you want to edit: ");
 
