@@ -111,7 +111,7 @@ public class UserInterface {
 
         System.out.println("Select the superhero you want to edit: ");
 
-        indexToEdit = (input.nextInt() - 1);
+        indexToEdit = input.nextInt() - 1;
 
         System.out.println("Select the attribute you want to edit: ");
         System.out.println("1. Superhero name: " + controller.getSearchMatches().get(indexToEdit).getSuperheroName());

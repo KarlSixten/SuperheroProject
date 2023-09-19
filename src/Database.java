@@ -36,4 +36,7 @@ public class Database {
     public void editSuperhero(int numberToEdit){
 
     }
+    public void deleteSuperhero (){
+
+    }
 }

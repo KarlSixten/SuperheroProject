@@ -24,10 +24,6 @@ class DatabaseTest {
         database = null;
     }
 
-    @Test
-    void getSearchMatches() {
-
-    }
 
     @Test
     //Tilføjer yderligere en superhelt udover de to hardcodede i databasen. Tester om expectedSize og størrelsen på min superheroesArraylist() er lige store.
@@ -45,6 +41,18 @@ class DatabaseTest {
         //Assert
         assertEquals(expectedSize, database.getSuperheroesArrayList().size());
 
+    }
+    @Test
+    void getSearchMatchesWithOne() {
+        s1 = new Superhero("Spiderman", "Aner det ikke","Edderkoppesværd", 1990, true, 1000);
+        database.getSuperheroesArrayList().add(s1);
+        //Arrange
+        String expectedName = "Spiderman";
+
+        //Act
+        String actualName = s1.getSuperheroName();
+        //Assert
+        assertEquals(expectedName, actualName);
     }
     @Test
 
