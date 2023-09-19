@@ -39,6 +39,8 @@ public class UserInterface {
             searchSuperhero();
         else if (userChoice == 4)
             editSuperhero();
+        else if (userChoice == 5)
+            deleteSuperhero();
         else if (userChoice == 9)
             System.exit(0);
         else System.out.println("Error, enter valid number");
@@ -181,6 +183,25 @@ public class UserInterface {
 
 
         }
+
+    }
+
+    public void deleteSuperhero() {
+        int count = 1;
+        int indexToDelete;
+        if (controller.getSuperheroesArrayList().isEmpty()) {
+            System.out.println("There are no superheroes in the database.");
+        } else {
+            System.out.println("----------------------------\n" +
+                    "Superheroes in database:\n" +
+                    "----------------------------");
+            for (Superhero superhero : controller.getSuperheroesArrayList()) {
+                System.out.println(count + ". " + superhero.getSuperheroName() + "\n");
+                count++;
+            }
+        }
+        System.out.println("Select the Superhero you want to delete from the database: ");
+        controller.getSuperheroesArrayList().remove(input.nextInt() - 1);
 
     }
 }
