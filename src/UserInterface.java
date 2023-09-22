@@ -48,6 +48,7 @@ public class UserInterface {
 
     public void addSuperhero() {
         System.out.println("What is the superheros superhero name?");
+        input.nextLine(); //reset af scanneren - håndtering af scanner bug
         String superheroName = input.nextLine();
         System.out.println("What is the superheros real name?");
         String realName = input.nextLine();
