@@ -66,6 +66,15 @@ public class Superhero {
         this.strength = strength;
     }
 
+    public String toStringAttributesIndexed() {
+        return "1. Superhero Name: " + superheroName + "\n" +
+                "2. Real name: " + realName + "\n" +
+                "3. Superpower: " + superpower + "\n" +
+                "4. Year created: " + yearCreated + "\n" +
+                "5. The superhero is human: " +  isHuman + "\n" +
+                "6. Their strength is: " + strength;
+    }
+
     //ToString Method
     public String toString() {
         return "Superhero Name: " + superheroName + "\n" +

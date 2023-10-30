@@ -10,6 +10,8 @@ public class Database {
 
     }
 
+
+
     public ArrayList<Superhero> getSearchMatches() {
         return searchMatches;
     }
@@ -31,5 +33,65 @@ public class Database {
 
     public void deleteSuperhero(int indexToDelete) {
         superheroesArrayList.remove(indexToDelete);
+    }
+
+    public String printSuperheroNames() {
+        StringBuilder stringBuilder = new StringBuilder();
+        int superheroNumber = 1;
+        for (Superhero superhero : superheroesArrayList) {
+            stringBuilder.append(superheroNumber + ". " + superhero.getSuperheroName() + "\n");
+            superheroNumber++;
+        }
+        return stringBuilder.toString();
+    }
+
+    public Controller.returnMessage editSuperhero(int indexOfSuperhero, int attributeToEdit, String newValue) {
+        Superhero superheroToEdit = superheroesArrayList.get(indexOfSuperhero);
+
+        switch (attributeToEdit) {
+            case 1 -> {
+                superheroToEdit.setSuperheroName(newValue);
+                return Controller.returnMessage.OK;
+            }
+            case 2 -> {
+                superheroToEdit.setRealName(newValue);
+                return Controller.returnMessage.OK;
+            }
+            case 3 -> {
+                superheroToEdit.setSuperpower(newValue);
+                return Controller.returnMessage.OK;
+            }
+            default -> {
+                return Controller.returnMessage.INVALID;
+            }
+        }
+    }
+    public Controller.returnMessage editSuperhero(int indexOfSuperhero, int attributeToEdit, int newValue) {
+        Superhero superheroToEdit = superheroesArrayList.get(indexOfSuperhero);
+
+        switch (attributeToEdit) {
+            case 4 -> {
+                superheroToEdit.setYearCreated(newValue);
+                return Controller.returnMessage.OK;
+            }
+            case 6 -> {
+                superheroToEdit.setStrength(newValue);
+                return Controller.returnMessage.OK;
+            }
+            default -> {return Controller.returnMessage.INVALID;}
+        }
+    }
+    public Controller.returnMessage editSuperhero(int indexOfSuperhero, int attributeToEdit, boolean newValue) {
+        Superhero superheroToEdit = superheroesArrayList.get(indexOfSuperhero);
+
+        switch (attributeToEdit) {
+            case 5 -> {
+                superheroToEdit.setIsHuman(newValue);
+                return Controller.returnMessage.OK;
+            }
+            default -> {
+                return Controller.returnMessage.INVALID;
+            }
+        }
     }
 }

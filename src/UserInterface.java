@@ -100,6 +100,21 @@ public class UserInterface {
             }
         }
 
+        public void editSuperhero() {
+            System.out.println(controller.printSuperheroNames());
+            System.out.println("Select the superhero you'd like to edit: ");
+            editSearchMatches();
+        }
+
+
+
+        private void editSearchMatches(){
+        int indexToEdit;
+        indexToEdit = (input.nextInt() -1);
+            System.out.println("Select the attribute you want to edit");
+            System.out.println(controller.getSuperheroesArrayList().get(indexToEdit).toStringAttributesIndexed());
+        }
+    /*
     public void editSuperhero() {
         int indexToEdit;
         searchSuperhero();
@@ -120,8 +135,27 @@ public class UserInterface {
         System.out.println("5. Is human: " + controller.getSearchMatches().get(indexToEdit).getIsHuman());
         System.out.println("6. Strength: " + controller.getSearchMatches().get(indexToEdit).getStrength());
 
-        try {
-            switch (input.nextInt()) {
+        int attributeToEdit = input.nextInt();
+        boolean validInput = false;
+
+
+        switch (attributeToEdit) {
+            case 1 -> {
+                do {
+                        System.out.println("Enter new superhero name: ");
+                        String newValue = input.nextLine();
+                        input.nextLine();
+                        switch (controller.editSuperhero(indexToEdit, attributeToEdit, newValue)) {
+                            case OK -> validInput = true;
+                            case INVALID -> System.out.println("Invalid!");
+                        }
+                } while (!validInput);
+            }
+        }
+
+
+         try {
+            switch (attributeToEdit) {
                 case (1):
                     System.out.println("Enter new superhero name: ");
                     input.nextLine();
@@ -179,6 +213,8 @@ public class UserInterface {
             System.out.println("New data of the superhero: \n" + controller.getSuperheroesArrayList().get(indexToEdit));
         }
     }
+     */
+
 
     public void deleteSuperhero() {
         int count = 1;

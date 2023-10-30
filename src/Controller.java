@@ -3,6 +3,11 @@ import java.util.ArrayList;
 public class Controller {
     private Database superheroDatabase;
 
+    enum returnMessage{
+        OK,
+        INVALID;
+    }
+
     public ArrayList<Superhero> getSearchMatches() {
         return superheroDatabase.getSearchMatches();
     }
@@ -26,5 +31,19 @@ public class Controller {
 
     public void deleteSuperhero(int indexToDelete) {
         superheroDatabase.deleteSuperhero(indexToDelete);
+    }
+
+    public String printSuperheroNames() {
+        return superheroDatabase.printSuperheroNames();
+    }
+
+    public returnMessage editSuperhero(int indexOfSuperhero, int attributeToEdit, String newValue) {
+        return superheroDatabase.editSuperhero(indexOfSuperhero, attributeToEdit, newValue);
+    }
+    public returnMessage editSuperhero(int indexOfSuperhero, int attributeToEdit, int newValue) {
+        return superheroDatabase.editSuperhero(indexOfSuperhero, attributeToEdit, newValue);
+    }
+    public returnMessage editSuperhero(int indexOfSuperhero, int attributeToEdit, boolean newValue) {
+        return superheroDatabase.editSuperhero(indexOfSuperhero, attributeToEdit, newValue);
     }
 }
