@@ -102,119 +102,27 @@ public class UserInterface {
         }
 
         public void editSuperhero() {
+            //Asks the user which superhero to edit, and converts it into index for ArrayList
             System.out.println(controller.printSuperheroNames());
             System.out.println("Select the superhero you'd like to edit: ");
-            editSearchMatches();
-        }
+            int indexOfSuperheroToEdit = input.nextInt() - 1;
 
+            //Asks the user which attribute they'd like to edit and converts to int for switch case
+            System.out.println("What would you like to edit?");
+            System.out.println(controller.getSuperheroesArrayList().get(indexOfSuperheroToEdit).printSuperheroAttributesIndexed());
+            int attributeToEdit = input.nextInt();
 
+            //Asks the user for the new value, input is taken in later method call
+            System.out.println("New value:");
+            input.nextLine(); //Scanner bug
 
-        private void editSearchMatches(){
-        int indexToEdit;
-        indexToEdit = (input.nextInt() -1);
-            System.out.println("Select the attribute you want to edit");
-            System.out.println(controller.getSuperheroesArrayList().get(indexToEdit).toStringAttributesIndexed());
-        }
-    /*
-    public void editSuperhero() {
-        int indexToEdit;
-        searchSuperhero();
-
-        while (controller.getSearchMatches().isEmpty()) {
-            searchSuperhero();
-        }
-
-        System.out.println("Select the superhero you want to edit: ");
-
-        indexToEdit = (input.nextInt() - 1);
-
-        System.out.println("Select the attribute you want to edit: ");
-        System.out.println("1. Superhero name: " + controller.getSearchMatches().get(indexToEdit).getSuperheroName());
-        System.out.println("2. Name: " + controller.getSearchMatches().get(indexToEdit).getRealName());
-        System.out.println("3. Superpower: " + controller.getSearchMatches().get(indexToEdit).getSuperpower());
-        System.out.println("4. Year created: " + controller.getSearchMatches().get(indexToEdit).getYearCreated());
-        System.out.println("5. Is human: " + controller.getSearchMatches().get(indexToEdit).getIsHuman());
-        System.out.println("6. Strength: " + controller.getSearchMatches().get(indexToEdit).getStrength());
-
-        int attributeToEdit = input.nextInt();
-        boolean validInput = false;
-
-
-        switch (attributeToEdit) {
-            case 1 -> {
-                do {
-                        System.out.println("Enter new superhero name: ");
-                        String newValue = input.nextLine();
-                        input.nextLine();
-                        switch (controller.editSuperhero(indexToEdit, attributeToEdit, newValue)) {
-                            case OK -> validInput = true;
-                            case INVALID -> System.out.println("Invalid!");
-                        }
-                } while (!validInput);
-            }
-        }
-
-
-         try {
             switch (attributeToEdit) {
-                case (1):
-                    System.out.println("Enter new superhero name: ");
-                    input.nextLine();
-                    controller.getSuperheroesArrayList().get(indexToEdit).setSuperheroName(input.nextLine());
-                    System.out.println("The new data for the superhero:\n" + controller.getSuperheroesArrayList().get(indexToEdit));
-                    break;
-
-                case (2):
-                    System.out.println("Enter new real name: ");
-                    input.nextLine();
-                    controller.getSuperheroesArrayList().get(indexToEdit).setRealName(input.nextLine());
-                    System.out.println("The new data for the superhero:\n" + controller.getSuperheroesArrayList().get(indexToEdit));
-                    break;
-
-                case (3):
-                    System.out.println("Indtast ny superpower: ");
-                    input.nextLine();
-                    controller.getSuperheroesArrayList().get(indexToEdit).setSuperpower(input.nextLine());
-                    System.out.println("The new data for the superhero:\n" + controller.getSuperheroesArrayList().get(indexToEdit));
-                    break;
-
-                case (4):
-                    System.out.println("Enter new year of creation: ");
-                    input.nextLine();
-                    controller.getSuperheroesArrayList().get(indexToEdit).setYearCreated(input.nextInt());
-                    System.out.println("The new data for the superhero:\n" + controller.getSuperheroesArrayList().get(indexToEdit));
-                    break;
-
-                case (5):
-                    System.out.println("Is the superhero human: ");
-                    boolean isHuman = false;
-                    if (input.next().equalsIgnoreCase("y")) {
-                        isHuman = true;
-                        input.nextLine();
-                        controller.getSuperheroesArrayList().get(indexToEdit).setIsHuman(isHuman);
-                        System.out.println("The new data for the superhero:\n" + controller.getSuperheroesArrayList().get(indexToEdit));
-                        break;
-                    }
-                case (6):
-                    System.out.println("Put new strength [1-100]: ");
-                    input.nextLine();
-                    controller.getSuperheroesArrayList().get(indexToEdit).setStrength(input.nextInt());
-                    System.out.println("The new data for the superhero:\n" + controller.getSuperheroesArrayList().get(indexToEdit));
-                    break;
-
-                default:
-                    //ugyldigt valg
-                    System.out.println("Error, incompatible choice");
-                    break;
+                case 1, 2, 3 -> controller.editSuperhero(indexOfSuperheroToEdit, attributeToEdit, input.nextLine());
+                case 4, 6 -> controller.editSuperhero(indexOfSuperheroToEdit, attributeToEdit, input.nextInt());
+                case 5 -> controller.editSuperhero(indexOfSuperheroToEdit, attributeToEdit, input.nextBoolean());
+                default -> System.out.println("What");
             }
-        } catch (Exception e) {
-            System.out.println("Error must enter a valid number");
-            input.nextLine();
-            controller.getSuperheroesArrayList().get(indexToEdit).setStrength(input.nextInt());
-            System.out.println("New data of the superhero: \n" + controller.getSuperheroesArrayList().get(indexToEdit));
         }
-    }
-     */
 
 
     public void deleteSuperhero() {
