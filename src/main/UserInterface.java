@@ -1,5 +1,6 @@
+package main;
+import comparator.*;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UserInterface  {
@@ -46,9 +47,25 @@ public class UserInterface  {
                 "9. End");
     }
 
-private void sortAfterName(){
-        controller.getSuperheroesArrayList().sort(new SuperheroComparator());
+private void sortAfterSuperheroName(){
+        controller.getSuperheroesArrayList().sort(new SuperheroNameComparator());
     System.out.println("Data sorted after superheroname");
+}
+private void sortAfterRealName(){
+        controller.getSuperheroesArrayList().sort(new SuperheroRealNameComparator());
+    System.out.println("Data sorted after superheroes real name");
+}
+private void sortAfterSuperpower(){
+        controller.getSuperheroesArrayList().sort(new SuperheroSuperpoweComparator());
+}
+private void sortAfterIsHuman(){
+        controller.getSuperheroesArrayList().sort(new SuperheroIsHumanComparator());
+}
+private void sortAfterYearCreated(){
+        controller.getSuperheroesArrayList().sort(new SuperheroYearCreatedComparator());
+}
+private void sortAfterStrength(){
+        controller.getSuperheroesArrayList().sort(new SuperheroStrengthComparator());
 }
 
     private void addSuperhero() {
@@ -77,7 +94,24 @@ private void sortAfterName(){
         if (controller.getSuperheroesArrayList().isEmpty()) {
             System.out.println("There are no superheroes in the database.");
         } else {
-            sortAfterName();
+            System.out.println("How would you like to sort the superheros?\n" +
+                    "1. kea.Superhero Name.\n" +
+                    "2. Real name.\n" +
+                    "3. Superpower.\n" +
+                    "4. Year created.\n" +
+                    "5. If the superhero is human.\n" +
+                    "6. Their strength.");
+            switch (input.nextInt()) {
+                case 1 -> sortAfterSuperheroName();
+                case 2 -> sortAfterRealName();
+                case 3 -> sortAfterSuperpower();
+                case 4 -> sortAfterYearCreated();
+                case 5 -> sortAfterIsHuman();
+                case 6 -> sortAfterStrength();
+                default -> System.out.println("Please enter a valid number!");
+            }
+
+
             System.out.println("""
                     ------------------------
                     Superheroes in database:
@@ -147,7 +181,7 @@ private void sortAfterName(){
                     System.out.println(count + ". " + superhero.getSuperheroName() + "\n");
                     count++;
                 }
-                System.out.println("Select the Superhero you want to delete from the database: ");
+                System.out.println("Select the kea.Superhero you want to delete from the database: ");
                 controller.deleteSuperhero(input.nextInt() - 1);
                 System.out.println("The superhero was deleted.");
                 saveSuperheros();

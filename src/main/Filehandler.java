@@ -1,3 +1,7 @@
+package main;
+
+import main.Superhero;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintStream;
@@ -12,7 +16,7 @@ public class Filehandler {
 
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
-            String[] parts = line.split(",");
+            String[] parts = line.split(";");
             dataArrayList.add(new Superhero(parts[0],
                     parts[1],
                     parts[2],
