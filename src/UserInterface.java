@@ -1,18 +1,26 @@
-import java.util.InputMismatchException;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
-public class UserInterface {
+public class UserInterface  {
     Database superheroDatabase = new Database();
     private Controller controller = new Controller(superheroDatabase);
+    private Filehandler filehandler = new Filehandler();
+
+    public UserInterface() throws IOException {
+        controller.setSuperheroArrayList(filehandler.loadData());
+    }
+
     //Create scanner called input
     Scanner input = new Scanner(System.in);
-    boolean uIIsrunning = true;
+    boolean uiIsrunning = true;
+
     public void startProgram(){
-        while (uIIsrunning){
+        while (uiIsrunning){
             showMainMenu();
             //Tilføjer to superheros til test af f.eks. søgning i lister
-            controller.addSuperhero("Batman", "Bruce Wayne", "Badass", 1966, true, 62);
-            controller.addSuperhero("Superman", "Vides ikke", "Ikke lige så sej", 1951, true, 84);
+            //controller.addSuperhero("Batman", "Bruce Wayne", "Badass", 1966, true, 62);
+            //controller.addSuperhero("Superman", "Vides ikke", "Ikke lige så sej", 1951, true, 84);
 
             switch (input.nextInt()){
                 case 1 -> addSuperhero();
@@ -20,7 +28,8 @@ public class UserInterface {
                 case 3 -> searchSuperhero();
                 case 4 -> editSuperhero();
                 case 5 -> deleteSuperhero();
-                case 9 -> System.exit(0);
+                case 6 -> saveSuperheros();
+                case 9 -> exitProgram();
                 default -> System.out.println("Enter valid number");
             }
 
@@ -33,6 +42,7 @@ public class UserInterface {
                 "3. Find superhero. \n" +
                 "4. Edit superhero.\n" +
                 "5. Delete superhero.\n" +
+                "6. Save superheros.\n" +
                 "9. End");
     }
 
@@ -75,7 +85,7 @@ public class UserInterface {
         else System.out.println("Error, enter valid number");
     }
 
-    public void addSuperhero() {
+    private void addSuperhero() {
         System.out.println("What is the superheros superhero name?");
         input.nextLine(); //reset af scanneren - håndtering af scanner bug
         String superheroName = input.nextLine();
@@ -94,9 +104,10 @@ public class UserInterface {
         int strength = input.nextInt();
 
         controller.addSuperhero(superheroName, realName, superpower, yearCreated, isHuman, strength);
+        saveSuperheros();
     }
 
-    public void showSuperheros() {
+    private void showSuperheros() {
         if (controller.getSuperheroesArrayList().isEmpty()) {
             System.out.println("There are no superheroes in the database.");
         } else {
@@ -110,7 +121,7 @@ public class UserInterface {
         }
     }
 
-    public void searchSuperhero() {
+    private void searchSuperhero() {
         StringBuilder stringBuilder = new StringBuilder();
         System.out.println("Search for name or part of superheros name: ");
         String stringToSearchFor = input.nextLine();
@@ -130,7 +141,7 @@ public class UserInterface {
             }
         }
 
-        public void editSuperhero() {
+        private void editSuperhero() {
             //Asks the user which superhero to edit, and converts it into index for ArrayList
             System.out.println(controller.printSuperheroNames());
             System.out.println("Select the superhero you'd like to edit: ");
@@ -151,10 +162,11 @@ public class UserInterface {
                 case 5 -> controller.editSuperhero(indexOfSuperheroToEdit, attributeToEdit, input.nextBoolean());
                 default -> System.out.println("What");
             }
+            saveSuperheros();
         }
 
 
-    public void deleteSuperhero() {
+    private void deleteSuperhero() {
         int count = 1;
         try {
             if (controller.getSuperheroesArrayList().isEmpty()) {
@@ -171,9 +183,20 @@ public class UserInterface {
                 System.out.println("Select the Superhero you want to delete from the database: ");
                 controller.deleteSuperhero(input.nextInt() - 1);
                 System.out.println("The superhero was deleted.");
+                saveSuperheros();
             }
         } catch (Exception e) {
             System.out.println("Error, try again!");
         }
+    }
+
+    private void saveSuperheros() {
+        filehandler.saveSuperheroes(controller.getSuperheroesArrayList());
+        System.out.println("All superheros have been saved.");
+    }
+
+    private void exitProgram() {
+        uiIsrunning = false;
+        System.out.println("Exiting...");
     }
 }

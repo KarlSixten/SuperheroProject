@@ -3,6 +3,10 @@ import java.util.ArrayList;
 public class Controller {
     private Database superheroDatabase;
 
+    public void setSuperheroArrayList(ArrayList<Superhero> liste) {
+        superheroDatabase.setSuperheroArrayList(liste);
+    }
+
     enum returnMessage{
         OK,
         INVALID;

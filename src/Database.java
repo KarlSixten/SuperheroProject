@@ -94,4 +94,12 @@ public class Database {
             }
         }
     }
+
+    public void setSuperheroArrayList(ArrayList<Superhero> liste) {
+        int count = 0;
+        for (Superhero superhero : liste) {
+            superheroesArrayList.add(superhero);
+            count++;
+        }
+    }
 }
