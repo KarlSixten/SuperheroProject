@@ -6,8 +6,37 @@ public class UserInterface {
     private Controller controller = new Controller(superheroDatabase);
     //Create scanner called input
     Scanner input = new Scanner(System.in);
+    boolean uIIsrunning = true;
+    public void startProgram(){
+        while (uIIsrunning){
+            showMainMenu();
+            //Tilføjer to superheros til test af f.eks. søgning i lister
+            controller.addSuperhero("Batman", "Bruce Wayne", "Badass", 1966, true, 62);
+            controller.addSuperhero("Superman", "Vides ikke", "Ikke lige så sej", 1951, true, 84);
 
-    public void startProgram() {
+            switch (input.nextInt()){
+                case 1 -> addSuperhero();
+                case 2 -> showSuperheros();
+                case 3 -> searchSuperhero();
+                case 4 -> editSuperhero();
+                case 5 -> deleteSuperhero();
+                case 9 -> System.exit(0);
+                default -> System.out.println("Enter valid number");
+            }
+
+        }
+    }
+    private void showMainMenu(){
+        System.out.println("Welcome to the superhero database. \n" +
+                "1. Create new superhero. \n" +
+                "2. Show superheroes. \n" +
+                "3. Find superhero. \n" +
+                "4. Edit superhero.\n" +
+                "5. Delete superhero.\n" +
+                "9. End");
+    }
+
+    /*public void startProgram() {
         //Tilføjer to superheros til test af f.eks. søgning i lister
         controller.addSuperhero("Batman", "Bruce Wayne", "Badass", 1966, true, 62);
         controller.addSuperhero("Superman", "Vides ikke", "Ikke lige så sej", 1951, true, 84);
@@ -28,7 +57,7 @@ public class UserInterface {
                 input.nextLine(); //reset af scanneren - håndtering af scanner bug
             }
         }
-    }
+    }*/
 
     public void handleUserChoice(int userChoice) {
         if (userChoice == 1)
