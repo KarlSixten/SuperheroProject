@@ -1,3 +1,5 @@
+package main;
+
 public class Superhero {
     private String superheroName;
     private String realName;
