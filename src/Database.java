@@ -22,6 +22,7 @@ public class Database {
     }
 
     public ArrayList<Superhero> searchSuperhero(String stringToSearchFor) {
+
         searchMatches.clear();
         for (Superhero superhero : superheroesArrayList) {
             if (superhero.getSuperheroName().contains(stringToSearchFor)) {

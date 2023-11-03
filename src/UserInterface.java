@@ -46,44 +46,10 @@ public class UserInterface  {
                 "9. End");
     }
 
-    /*public void startProgram() {
-        //Tilføjer to superheros til test af f.eks. søgning i lister
-        controller.addSuperhero("Batman", "Bruce Wayne", "Badass", 1966, true, 62);
-        controller.addSuperhero("Superman", "Vides ikke", "Ikke lige så sej", 1951, true, 84);
-        int userChoice = -1;
-        while (userChoice != 9) {
-            try {
-                System.out.println("Welcome to the superhero database.\n" +
-                        "1. Create new superhero.\n" +
-                        "2. Show superheroes.\n" +
-                        "3. Find superhero.\n" +
-                        "4. Edit superhero.\n" +
-                        "5. Delete superhero.\n" +
-                        "9. End");
-                userChoice = input.nextInt();
-                handleUserChoice(userChoice);
-            } catch (InputMismatchException e) {
-                System.out.println("Error enter valid number, try again");
-                input.nextLine(); //reset af scanneren - håndtering af scanner bug
-            }
-        }
-    }*/
-
-    public void handleUserChoice(int userChoice) {
-        if (userChoice == 1)
-            addSuperhero();
-        else if (userChoice == 2)
-            showSuperheros();
-        else if (userChoice == 3)
-            searchSuperhero();
-        else if (userChoice == 4)
-            editSuperhero();
-        else if (userChoice == 5)
-            deleteSuperhero();
-        else if (userChoice == 9)
-            System.exit(0);
-        else System.out.println("Error, enter valid number");
-    }
+private void sortAfterName(){
+        controller.getSuperheroesArrayList().sort(new SuperheroComparator());
+    System.out.println("Data sorted after superheroname");
+}
 
     private void addSuperhero() {
         System.out.println("What is the superheros superhero name?");
@@ -111,6 +77,7 @@ public class UserInterface  {
         if (controller.getSuperheroesArrayList().isEmpty()) {
             System.out.println("There are no superheroes in the database.");
         } else {
+            sortAfterName();
             System.out.println("""
                     ------------------------
                     Superheroes in database:
