@@ -84,4 +84,22 @@ class DatabaseTest {
 
         assertEquals(expectedResult, actualResult);
     }
+    @Test
+    void simpleSort(){
+        s1 = new Superhero("Benjamin", "Aner det ikke","Edderkoppesværd", 1990, true, 1000);
+        s2 = new Superhero("Aleksander", "Aner det ikke","Edderkoppesværd", 1990, true, 1000);
+
+        database.getSuperheroesArrayList().add(s1);
+        database.getSuperheroesArrayList().add(s2);
+
+        Superhero expectedResult = s1;
+        Superhero actualResult = database.getSuperheroesArrayList().get(0);
+
+        assertEquals(actualResult, expectedResult);
+        database.simpleSort(1);
+
+        actualResult = database.getSuperheroesArrayList().get(1);
+        assertEquals(actualResult, s1);
+
+    }
 }

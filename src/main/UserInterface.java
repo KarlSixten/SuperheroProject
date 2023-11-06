@@ -48,27 +48,6 @@ public class UserInterface {
                 "9. End");
     }
 
-private void sortAfterSuperheroName(){
-        controller.getSuperheroesArrayList().sort(new SuperheroNameComparator());
-    System.out.println("Data sorted after superheroname");
-}
-private void sortAfterRealName(){
-        controller.getSuperheroesArrayList().sort(new SuperheroRealNameComparator());
-    System.out.println("Data sorted after superheroes real name");
-}
-private void sortAfterSuperpower(){
-        controller.getSuperheroesArrayList().sort(new SuperheroSuperpoweComparator());
-}
-private void sortAfterIsHuman(){
-        controller.getSuperheroesArrayList().sort(new SuperheroIsHumanComparator());
-}
-private void sortAfterYearCreated(){
-        controller.getSuperheroesArrayList().sort(new SuperheroYearCreatedComparator());
-}
-private void sortAfterStrength(){
-        controller.getSuperheroesArrayList().sort(new SuperheroStrengthComparator());
-}
-
     private void addSuperhero() {
         System.out.println("What is the superheros superhero name?");
         input.nextLine(); //reset af scanneren - håndtering af scanner bug
@@ -139,8 +118,8 @@ private void sortAfterStrength(){
     }
 
     private void saveSuperheros() {
-        filehandler.saveSuperheroes(controller.getSuperheroesArrayList());
-        System.out.println("All superheros have been saved.");
+        controller.saveSuperheros();
+        System.out.println("All superheroes have been saved.");
     }
 
     private void simpleSort() {

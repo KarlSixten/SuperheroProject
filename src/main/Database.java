@@ -135,4 +135,42 @@ public class Database {
             superheroesArrayList.add(superhero);
         }
     }
+
+    public void simpleSort(int sortMethod) {
+        superheroesArrayList.sort(createComparator(sortMethod));
+    }
+    public void advancedSort (int primaryMethod, int secondaryMethod){
+        Collections.sort(superheroesArrayList, createComparator(primaryMethod).thenComparing(createComparator(secondaryMethod)));
+    }
+
+    public String printSuperheroNamesWithIndex() {
+        StringBuilder stringBuilder = new StringBuilder();
+        int count = 1;
+        stringBuilder.append("""
+                        ------------------------
+                        Superheroes in database:
+                        ------------------------""");
+        for (Superhero superhero : superheroesArrayList) {
+            stringBuilder.append("\n" + count + "." + superhero.getSuperheroName());
+            count++;
+        }
+        stringBuilder.append("\n");
+        return stringBuilder.toString();
+    }
+
+    public void saveSuperheros() {
+        filehandler.saveSuperheroes(superheroesArrayList);
+    }
+
+    private Comparator createComparator(int selection){
+        switch (selection){
+            case 1 -> { return new SuperheroNameComparator(); }
+            case 2 -> { return new SuperheroRealNameComparator(); }
+            case 3 -> { return new SuperheroSuperpoweComparator(); }
+            case 4 -> { return new SuperheroYearCreatedComparator(); }
+            case 5 -> { return new SuperheroIsHumanComparator(); }
+            case 6 -> { return new SuperheroStrengthComparator(); }
+            default -> { return null; }
+        }
+    }
 }
