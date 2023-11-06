@@ -69,7 +69,7 @@ public class Superhero {
     }
 
     public String printSuperheroAttributesIndexed() {
-        return "1. kea.Superhero Name: " + superheroName + "\n" +
+        return "1. Superhero Name: " + superheroName + "\n" +
                 "2. Real name: " + realName + "\n" +
                 "3. Superpower: " + superpower + "\n" +
                 "4. Year created: " + yearCreated + "\n" +
@@ -79,7 +79,7 @@ public class Superhero {
 
     //ToString Method
     public String toString() {
-        return "kea.Superhero Name: " + superheroName + "\n" +
+        return "Superhero Name: " + superheroName + "\n" +
                 "Real name: " + realName + "\n" +
                 "Superpower: " + superpower + "\n" +
                 "Year created: " + yearCreated + "\n" +

@@ -1,15 +1,12 @@
 package main;
-import comparator.*;
 import java.io.IOException;
-import java.util.Scanner;
+import java.util.*;
 
-public class UserInterface  {
-    Database superheroDatabase = new Database();
-    private Controller controller = new Controller(superheroDatabase);
-    private Filehandler filehandler = new Filehandler();
+public class UserInterface {
+    private Controller controller;
 
     public UserInterface() throws IOException {
-        controller.setSuperheroArrayList(filehandler.loadData());
+        this.controller = new Controller();
     }
 
     //Create scanner called input
@@ -19,21 +16,23 @@ public class UserInterface  {
     public void startProgram(){
         while (uiIsrunning){
             showMainMenu();
-            //Tilføjer to superheros til test af f.eks. søgning i lister
-            //controller.addSuperhero("Batman", "Bruce Wayne", "Badass", 1966, true, 62);
-            //controller.addSuperhero("Superman", "Vides ikke", "Ikke lige så sej", 1951, true, 84);
-
-            switch (input.nextInt()){
-                case 1 -> addSuperhero();
-                case 2 -> showSuperheros();
-                case 3 -> searchSuperhero();
-                case 4 -> editSuperhero();
-                case 5 -> deleteSuperhero();
-                case 6 -> saveSuperheros();
-                case 9 -> exitProgram();
-                default -> System.out.println("Enter valid number");
-            }
-
+          try {
+              switch (input.nextInt()){
+                  case 1 -> addSuperhero();
+                  case 2 -> showSuperheros();
+                  case 3 -> searchSuperhero();
+                  case 4 -> editSuperhero();
+                  case 5 -> deleteSuperhero();
+                  case 6 -> saveSuperheros();
+                  case 7 -> simpleSort();
+                  case 8 -> advancedSort();
+                  case 9 -> exitProgram();
+                  default -> System.out.println("Enter valid number");
+              }
+          }catch (InputMismatchException e){
+              System.out.println("Invalid input, try again");
+                input.nextLine(); // reset af scanner bug
+          }
         }
     }
     private void showMainMenu(){
@@ -44,6 +43,8 @@ public class UserInterface  {
                 "4. Edit superhero.\n" +
                 "5. Delete superhero.\n" +
                 "6. Save superheros.\n" +
+                "7. Sort by attribute.\n" +
+                "8. Sort by two attributes.\n" +
                 "9. End");
     }
 
@@ -91,109 +92,101 @@ private void sortAfterStrength(){
     }
 
     private void showSuperheros() {
-        if (controller.getSuperheroesArrayList().isEmpty()) {
-            System.out.println("There are no superheroes in the database.");
-        } else {
-            System.out.println("How would you like to sort the superheros?\n" +
-                    "1. kea.Superhero Name.\n" +
-                    "2. Real name.\n" +
-                    "3. Superpower.\n" +
-                    "4. Year created.\n" +
-                    "5. If the superhero is human.\n" +
-                    "6. Their strength.");
-            switch (input.nextInt()) {
-                case 1 -> sortAfterSuperheroName();
-                case 2 -> sortAfterRealName();
-                case 3 -> sortAfterSuperpower();
-                case 4 -> sortAfterYearCreated();
-                case 5 -> sortAfterIsHuman();
-                case 6 -> sortAfterStrength();
-                default -> System.out.println("Please enter a valid number!");
-            }
-
-
-            System.out.println("""
-                    ------------------------
-                    Superheroes in database:
-                    ------------------------""");
-            for (Superhero superhero : controller.getSuperheroesArrayList()) {
-                System.out.println(superhero + "\n----------------------------");
-            }
-        }
+        System.out.println(controller.showSuperheros());
     }
 
     private void searchSuperhero() {
-        StringBuilder stringBuilder = new StringBuilder();
         System.out.println("Search for name or part of superheros name: ");
-        String stringToSearchFor = input.nextLine();
-        stringToSearchFor = input.nextLine(); //Ekstra input linje pga. scanner bug.
-            for (Superhero superhero : controller.searchSuperhero(stringToSearchFor)) {
-                if (superhero.getSuperheroName().contains(stringToSearchFor)) {
-                    stringBuilder.append(controller.getSearchMatches().indexOf(superhero) + 1);
-                    stringBuilder.append(". ");
-                    stringBuilder.append(superhero.getSuperheroName());
-                    stringBuilder.append("\n");
-                }
-            }
-            if (controller.getSearchMatches().isEmpty()) {
-                System.out.println("No superheros found :(");
-            } else {
-                System.out.println("Superheros found!: \n" + stringBuilder.toString());
-            }
+        input.nextLine(); //Scanner bug
+        System.out.println(controller.searchSuperhero(input.nextLine()));
+    }
+
+    private void editSuperhero() {
+        //Asks the user which superhero to edit, and converts it into index for ArrayList
+        System.out.println(controller.printSuperheroNames());
+        System.out.println("Select the superhero you'd like to edit: ");
+        int indexOfSuperheroToEdit = input.nextInt() - 1;
+
+        //Asks the user which attribute they'd like to edit and converts to int for switch case
+        System.out.println("What would you like to edit?");
+        System.out.println(controller.getSuperheroesArrayList().get(indexOfSuperheroToEdit).printSuperheroAttributesIndexed());
+        int attributeToEdit = input.nextInt();
+
+        //Asks the user for the new value, input is taken in later method call
+        System.out.println("New value:");
+        input.nextLine(); //Scanner bug
+
+        switch (attributeToEdit) {
+            case 1, 2, 3 -> controller.editSuperhero(indexOfSuperheroToEdit, attributeToEdit, input.nextLine());
+            case 4, 6 -> controller.editSuperhero(indexOfSuperheroToEdit, attributeToEdit, input.nextInt());
+            case 5 -> controller.editSuperhero(indexOfSuperheroToEdit, attributeToEdit, input.nextBoolean());
+            default -> System.out.println("What");
         }
-
-        private void editSuperhero() {
-            //Asks the user which superhero to edit, and converts it into index for ArrayList
-            System.out.println(controller.printSuperheroNames());
-            System.out.println("Select the superhero you'd like to edit: ");
-            int indexOfSuperheroToEdit = input.nextInt() - 1;
-
-            //Asks the user which attribute they'd like to edit and converts to int for switch case
-            System.out.println("What would you like to edit?");
-            System.out.println(controller.getSuperheroesArrayList().get(indexOfSuperheroToEdit).printSuperheroAttributesIndexed());
-            int attributeToEdit = input.nextInt();
-
-            //Asks the user for the new value, input is taken in later method call
-            System.out.println("New value:");
-            input.nextLine(); //Scanner bug
-
-            switch (attributeToEdit) {
-                case 1, 2, 3 -> controller.editSuperhero(indexOfSuperheroToEdit, attributeToEdit, input.nextLine());
-                case 4, 6 -> controller.editSuperhero(indexOfSuperheroToEdit, attributeToEdit, input.nextInt());
-                case 5 -> controller.editSuperhero(indexOfSuperheroToEdit, attributeToEdit, input.nextBoolean());
-                default -> System.out.println("What");
-            }
-            saveSuperheros();
-        }
+        saveSuperheros();
+    }
 
 
     private void deleteSuperhero() {
-        int count = 1;
+        System.out.println(controller.printSuperheroNamesWithIndex());
+        System.out.println("Select the superhero you want to delete:");
         try {
-            if (controller.getSuperheroesArrayList().isEmpty()) {
-                System.out.println("There are no superheroes in the database.");
-            } else {
-                System.out.println("""
-                        ------------------------
-                        Superheroes in database:
-                        ------------------------""");
-                for (Superhero superhero : controller.getSuperheroesArrayList()) {
-                    System.out.println(count + ". " + superhero.getSuperheroName() + "\n");
-                    count++;
-                }
-                System.out.println("Select the kea.Superhero you want to delete from the database: ");
-                controller.deleteSuperhero(input.nextInt() - 1);
-                System.out.println("The superhero was deleted.");
-                saveSuperheros();
-            }
-        } catch (Exception e) {
-            System.out.println("Error, try again!");
+            controller.deleteSuperhero(input.nextInt());
+            System.out.println("The superhero has been deleted from the database.");
+            saveSuperheros();
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("Invalid selection!\n");
         }
     }
 
     private void saveSuperheros() {
         filehandler.saveSuperheroes(controller.getSuperheroesArrayList());
         System.out.println("All superheros have been saved.");
+    }
+
+    private void simpleSort() {
+        System.out.println("How would you like to sort the superheros?\n");
+        printAttributesListed();
+        int userSelection = input.nextInt();
+        switch (userSelection) {
+            case 1, 2, 3, 4, 5, 6 -> controller.simpleSort(userSelection);
+            default -> System.out.println("Invalid input.");
+        }
+    }
+
+
+    private void advancedSort() {
+        int primarySort;
+        int secondarySort;
+
+        System.out.println("Select the primary sorting method");
+        printAttributesListed();
+        primarySort = input.nextInt();
+        while (!(primarySort > 0 && primarySort < 7)) {
+            System.out.println("Invalid input! Try again:");
+            primarySort = input.nextInt();
+        }
+
+        System.out.println("Select the secondary sorting method:");
+        printAttributesListed();
+        secondarySort = input.nextInt();
+        while (!(secondarySort > 0 && secondarySort < 7)) {
+            System.out.println("Invalid input! Try again:");
+            secondarySort = input.nextInt();
+        }
+        controller.advancedSort(primarySort, secondarySort);
+    }
+
+    private boolean inputIsValid(int minimumInput, int maximumInput, int actualInput) {
+        //Måske overflødig?
+        return actualInput >= minimumInput && actualInput <= maximumInput;
+    }
+    private void printAttributesListed(){
+        System.out.println("\n1. Superhero Name.\n" +
+                        "2. Real name.\n" +
+                        "3. Superpower.\n" +
+                        "4. Year created.\n" +
+                        "5. If the superhero is human.\n" +
+                        "6. Their strength.");
     }
 
     private void exitProgram() {

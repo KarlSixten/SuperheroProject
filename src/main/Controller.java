@@ -1,12 +1,22 @@
 package main;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Controller {
     private Database superheroDatabase;
 
+    public Controller() throws IOException {
+        this.superheroDatabase = new Database();
+    }
+
+
     public void setSuperheroArrayList(ArrayList<Superhero> liste) {
         superheroDatabase.setSuperheroArrayList(liste);
+    }
+
+    public void saveSuperheros() {
+        superheroDatabase.saveSuperheros();
     }
 
     enum returnMessage{
@@ -14,11 +24,11 @@ public class Controller {
         INVALID;
     }
 
-    public ArrayList<Superhero> getSearchMatches() {
-        return superheroDatabase.getSearchMatches();
+    public String showSuperheros() {
+        return superheroDatabase.showSuperheros();
     }
 
-    public Controller(Database superheroDatabase) {
+    public Controller(Database superheroDatabase) throws IOException {
         this.superheroDatabase = superheroDatabase;
     }
 
@@ -31,16 +41,28 @@ public class Controller {
         return superheroDatabase.getSuperheroesArrayList();
     }
 
-    public ArrayList<Superhero> searchSuperhero(String stringToSearchFor) {
+    public String searchSuperhero(String stringToSearchFor) {
         return superheroDatabase.searchSuperhero(stringToSearchFor);
     }
 
-    public void deleteSuperhero(int indexToDelete) {
-        superheroDatabase.deleteSuperhero(indexToDelete);
+    public void deleteSuperhero(int userSelection) {
+        superheroDatabase.deleteSuperhero(userSelection);
     }
 
     public String printSuperheroNames() {
         return superheroDatabase.printSuperheroNames();
+    }
+
+    public void simpleSort(int sortMethod) {
+        superheroDatabase.simpleSort(sortMethod);
+    }
+
+    public void advancedSort(int primaryMethod, int secondaryMethod) {
+        superheroDatabase.advancedSort(primaryMethod, secondaryMethod);
+    }
+
+    public String printSuperheroNamesWithIndex() {
+        return superheroDatabase.printSuperheroNamesWithIndex();
     }
 
     public returnMessage editSuperhero(int indexOfSuperhero, int attributeToEdit, String newValue) {

@@ -28,13 +28,12 @@ public class Filehandler {
         return dataArrayList;
     }
 
-
     public void saveSuperheroes(ArrayList<Superhero> superhereosArrayList){
         try {
             PrintStream output = new PrintStream("DataSheet.csv");
             for (Superhero superhero : superhereosArrayList) {
-                output.println(superhero.getSuperheroName() + "," + superhero.getRealName() + "," + superhero.getSuperpower()
-                + "," + superhero.getYearCreated() + "," + superhero.getIsHuman() + "," + superhero.getStrength());
+                output.println(superhero.getSuperheroName() + ";" + superhero.getRealName() + ";" + superhero.getSuperpower()
+                + ";" + superhero.getYearCreated() + ";" + superhero.getIsHuman() + ";" + superhero.getStrength());
             }
             output.close();
         } catch (IOException e) {
