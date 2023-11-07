@@ -1,5 +1,7 @@
 package main;
 
+import main.UserInterface;
+
 import java.io.IOException;
 
 public class Main {

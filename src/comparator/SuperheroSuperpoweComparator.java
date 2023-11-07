@@ -4,7 +4,7 @@ import java.util.Comparator;
 
 public class SuperheroSuperpoweComparator implements Comparator<Superhero> {
     @Override
-    public int compare(Superhero o1, Superhero o2) {
-        return o1.getSuperpower().compareTo(o2.getSuperpower());
+    public int compare(Superhero superhero1, Superhero superhero2) {
+        return superhero1.getSuperpower().compareTo(superhero2.getSuperpower());
     }
 }

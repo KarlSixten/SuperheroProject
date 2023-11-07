@@ -96,6 +96,7 @@ class DatabaseTest {
         Superhero actualResult = database.getSuperheroesArrayList().get(0);
 
         assertEquals(actualResult, expectedResult);
+
         database.simpleSort(1);
 
         actualResult = database.getSuperheroesArrayList().get(1);
