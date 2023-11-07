@@ -113,7 +113,10 @@ public class UserInterface {
             System.out.println("The superhero has been deleted from the database.");
             saveSuperheros();
         } catch (IndexOutOfBoundsException e) {
-            System.out.println("Invalid selection!\n");
+            System.out.println("Invalid selection!\n Try again!");
+            controller.deleteSuperhero(input.nextInt());
+            System.out.println("The superhero has been deleted from the database \n");
+            saveSuperheros();
         }
     }
 
