@@ -3,7 +3,7 @@ import java.io.IOException;
 import java.util.*;
 
 public class UserInterface {
-    private Controller controller;
+    private final Controller controller;
 
     public UserInterface() throws IOException {
         this.controller = new Controller();
@@ -36,16 +36,17 @@ public class UserInterface {
         }
     }
     private void showMainMenu(){
-        System.out.println("Welcome to the superhero database. \n" +
-                "1. Create new superhero. \n" +
-                "2. Show superheroes. \n" +
-                "3. Find superhero. \n" +
-                "4. Edit superhero.\n" +
-                "5. Delete superhero.\n" +
-                "6. Save superheros.\n" +
-                "7. Sort by attribute.\n" +
-                "8. Sort by two attributes.\n" +
-                "9. End");
+        System.out.println("""
+                Welcome to the superhero database.\s
+                1. Create new superhero.\s
+                2. Show superheroes.\s
+                3. Find superhero.\s
+                4. Edit superhero.
+                5. Delete superhero.
+                6. Save superheros.
+                7. Sort by attribute.
+                8. Sort by two attributes.
+                9. End""");
     }
 
     private void addSuperhero() {
@@ -59,10 +60,7 @@ public class UserInterface {
         System.out.println("When was this superhero created?");
         int yearCreated = input.nextInt();
         System.out.println("Is the superhero human? y/n");
-        boolean isHuman = false;
-        if (input.next().equalsIgnoreCase("y")) {
-            isHuman = true;
-        }
+        boolean isHuman = input.next().equalsIgnoreCase("y");
         System.out.println("What is the superheros strength? [1-100]");
         int strength = input.nextInt();
 
@@ -88,7 +86,7 @@ public class UserInterface {
 
         //Asks the user which attribute they'd like to edit and converts to int for switch case
         System.out.println("What would you like to edit?");
-        System.out.println(controller.getSuperheroesArrayList().get(indexOfSuperheroToEdit).printSuperheroAttributesIndexed());
+        System.out.println(controller.printSuperheroAttributesIndexed(indexOfSuperheroToEdit));
         int attributeToEdit = input.nextInt();
 
         //Asks the user for the new value, input is taken in later method call
@@ -125,15 +123,22 @@ public class UserInterface {
     }
 
     private void simpleSort() {
-        System.out.println("How would you like to sort the superheros?\n");
+        System.out.println("How would you like to sort the superheros?");
         printAttributesListed();
         int userSelection = input.nextInt();
-        switch (userSelection) {
-            case 1, 2, 3, 4, 5, 6 -> controller.simpleSort(userSelection);
-            default -> System.out.println("Invalid input.");
-        }
-    }
 
+        try {
+            while (!inputIsValid(1, 6, userSelection)) {
+                System.out.println("Invalid input! Try again:");
+                userSelection = input.nextInt();
+            }
+        } catch (InputMismatchException e) {
+            System.out.println("Invalid input! Try again:");
+            userSelection = input.nextInt();
+        }
+        controller.simpleSort(userSelection);
+        System.out.println("The superheros have been sorted.\n");
+    }
 
     private void advancedSort() {
         int primarySort;
@@ -142,7 +147,7 @@ public class UserInterface {
         System.out.println("Select the primary sorting method");
         printAttributesListed();
         primarySort = input.nextInt();
-        while (!(primarySort > 0 && primarySort < 7)) {
+        while (!inputIsValid(1,6,primarySort)) {
             System.out.println("Invalid input! Try again:");
             primarySort = input.nextInt();
         }
@@ -150,24 +155,27 @@ public class UserInterface {
         System.out.println("Select the secondary sorting method:");
         printAttributesListed();
         secondarySort = input.nextInt();
-        while (!(secondarySort > 0 && secondarySort < 7)) {
+        while (!inputIsValid(1,6, secondarySort)) {
             System.out.println("Invalid input! Try again:");
             secondarySort = input.nextInt();
         }
         controller.advancedSort(primarySort, secondarySort);
+        System.out.println("The superheros have been sorted.\n");
     }
 
     private boolean inputIsValid(int minimumInput, int maximumInput, int actualInput) {
-        //Måske overflødig?
         return actualInput >= minimumInput && actualInput <= maximumInput;
     }
+
     private void printAttributesListed(){
-        System.out.println("\n1. Superhero Name.\n" +
-                        "2. Real name.\n" +
-                        "3. Superpower.\n" +
-                        "4. Year created.\n" +
-                        "5. If the superhero is human.\n" +
-                        "6. Their strength.");
+        System.out.println("""
+
+                1. Superhero Name.
+                2. Real name.
+                3. Superpower.
+                4. Year created.
+                5. If the superhero is human.
+                6. Their strength.""");
     }
 
     private void exitProgram() {

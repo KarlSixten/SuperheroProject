@@ -1,6 +1,6 @@
 package comparator;
-import main.Superhero;
 
+import main.Superhero;
 import java.util.Comparator;
 
 public class SuperheroNameComparator implements Comparator <Superhero> {

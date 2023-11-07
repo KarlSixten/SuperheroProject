@@ -74,7 +74,7 @@ public class Superhero {
                 "3. Superpower: " + superpower + "\n" +
                 "4. Year created: " + yearCreated + "\n" +
                 "5. The superhero is human: " +  isHuman + "\n" +
-                "6. Their strength is: " + strength;
+                "6. Strength: " + strength;
     }
 
     //ToString Method

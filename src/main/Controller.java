@@ -1,18 +1,12 @@
 package main;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class Controller {
-    private Database superheroDatabase;
+    private final Database superheroDatabase;
 
     public Controller() throws IOException {
         this.superheroDatabase = new Database();
-    }
-
-
-    public void setSuperheroArrayList(ArrayList<Superhero> liste) {
-        superheroDatabase.setSuperheroArrayList(liste);
     }
 
     public void saveSuperheros() {
@@ -21,24 +15,16 @@ public class Controller {
 
     enum returnMessage{
         OK,
-        INVALID;
+        INVALID
     }
 
     public String showSuperheros() {
         return superheroDatabase.showSuperheros();
     }
 
-    public Controller(Database superheroDatabase) throws IOException {
-        this.superheroDatabase = superheroDatabase;
-    }
-
     public void addSuperhero(String superheroName, String realName, String superpower, int yearCreated, boolean isHuman, int strength) {
         superheroDatabase.addSuperhero(superheroName, realName, superpower, yearCreated, isHuman, strength);
 
-    }
-
-    public ArrayList<Superhero> getSuperheroesArrayList() {
-        return superheroDatabase.getSuperheroesArrayList();
     }
 
     public String searchSuperhero(String stringToSearchFor) {
@@ -63,6 +49,10 @@ public class Controller {
 
     public String printSuperheroNamesWithIndex() {
         return superheroDatabase.printSuperheroNamesWithIndex();
+    }
+
+    public String printSuperheroAttributesIndexed(int indexOfSuperhero) {
+        return superheroDatabase.printSuperheroAttributesIndexed(indexOfSuperhero);
     }
 
     public returnMessage editSuperhero(int indexOfSuperhero, int attributeToEdit, String newValue) {

@@ -1,7 +1,5 @@
 package main;
 
-import main.Superhero;
-
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintStream;

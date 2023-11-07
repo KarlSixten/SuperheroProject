@@ -10,8 +10,8 @@ import java.util.Comparator;
 public class Database {
     Filehandler filehandler = new Filehandler();
     //Create new Arraylist with initial capacity of 1
-    private final ArrayList<Superhero> superheroesArrayList = new ArrayList<Superhero>(1);
-    private final ArrayList<Superhero> searchMatches = new ArrayList<Superhero>();
+    private final ArrayList<Superhero> superheroesArrayList = new ArrayList<>(1);
+    private final ArrayList<Superhero> searchMatches = new ArrayList<>();
 
     public Database() throws IOException {
         setSuperheroArrayList(filehandler.loadData());
@@ -40,7 +40,7 @@ public class Database {
             if (superhero.getSuperheroName().toLowerCase().contains(stringToSearchFor.toLowerCase())) {
                 stringBuilder.append(superhero.getSuperheroName() + "\n");
                 searchMatches.add(superhero);
-            };
+            }
         }
 
         if (searchMatches.isEmpty()) {
@@ -119,28 +119,22 @@ public class Database {
     public Controller.returnMessage editSuperhero(int indexOfSuperhero, int attributeToEdit, boolean newValue) {
         Superhero superheroToEdit = superheroesArrayList.get(indexOfSuperhero);
 
-        switch (attributeToEdit) {
-            case 5 -> {
-                superheroToEdit.setIsHuman(newValue);
-                return Controller.returnMessage.OK;
-            }
-            default -> {
-                return Controller.returnMessage.INVALID;
-            }
+        if (attributeToEdit == 5) {
+            superheroToEdit.setIsHuman(newValue);
+            return Controller.returnMessage.OK;
         }
+        return Controller.returnMessage.INVALID;
     }
 
     public void setSuperheroArrayList(ArrayList<Superhero> liste) {
-        for (Superhero superhero : liste) {
-            superheroesArrayList.add(superhero);
-        }
+        superheroesArrayList.addAll(liste);
     }
 
     public void simpleSort(int sortMethod) {
         superheroesArrayList.sort(createComparator(sortMethod));
     }
     public void advancedSort (int primaryMethod, int secondaryMethod){
-        Collections.sort(superheroesArrayList, createComparator(primaryMethod).thenComparing(createComparator(secondaryMethod)));
+        superheroesArrayList.sort(createComparator(primaryMethod).thenComparing(createComparator(secondaryMethod)));
     }
 
     public String printSuperheroNamesWithIndex() {
@@ -160,6 +154,10 @@ public class Database {
 
     public void saveSuperheros() {
         filehandler.saveSuperheroes(superheroesArrayList);
+    }
+
+    public String printSuperheroAttributesIndexed(int indexOfSuperhero) {
+        return superheroesArrayList.get(indexOfSuperhero).printSuperheroAttributesIndexed();
     }
 
     private Comparator createComparator(int selection){
