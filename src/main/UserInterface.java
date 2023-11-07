@@ -1,17 +1,16 @@
 package main;
+
 import java.io.IOException;
 import java.util.*;
 
 public class UserInterface {
     private final Controller controller;
+    Scanner input = new Scanner(System.in);
+    boolean uiIsrunning = true;
 
     public UserInterface() throws IOException {
         this.controller = new Controller();
     }
-
-    //Create scanner called input
-    Scanner input = new Scanner(System.in);
-    boolean uiIsrunning = true;
 
     public void startProgram(){
         while (uiIsrunning){
@@ -27,10 +26,10 @@ public class UserInterface {
                   case 7 -> simpleSort();
                   case 8 -> advancedSort();
                   case 9 -> exitProgram();
-                  default -> System.out.println("Enter valid number");
+                  default -> System.out.println("Enter valid number.");
               }
           }catch (InputMismatchException e){
-              System.out.println("Invalid input, try again");
+              System.out.println("Invalid input, try again. MAIN MENU\n");
                 input.nextLine(); // reset af scanner bug
           }
         }
@@ -124,19 +123,8 @@ public class UserInterface {
 
     private void simpleSort() {
         System.out.println("How would you like to sort the superheros?");
-        printAttributesListed();
-        int userSelection = input.nextInt();
+        controller.simpleSort(selectSortMethod());
 
-        try {
-            while (!inputIsValid(1, 6, userSelection)) {
-                System.out.println("Invalid input! Try again:");
-                userSelection = input.nextInt();
-            }
-        } catch (InputMismatchException e) {
-            System.out.println("Invalid input! Try again:");
-            userSelection = input.nextInt();
-        }
-        controller.simpleSort(userSelection);
         System.out.println("The superheros have been sorted.\n");
     }
 
@@ -145,20 +133,11 @@ public class UserInterface {
         int secondarySort;
 
         System.out.println("Select the primary sorting method");
-        printAttributesListed();
-        primarySort = input.nextInt();
-        while (!inputIsValid(1,6,primarySort)) {
-            System.out.println("Invalid input! Try again:");
-            primarySort = input.nextInt();
-        }
+        primarySort = selectSortMethod();
 
         System.out.println("Select the secondary sorting method:");
-        printAttributesListed();
-        secondarySort = input.nextInt();
-        while (!inputIsValid(1,6, secondarySort)) {
-            System.out.println("Invalid input! Try again:");
-            secondarySort = input.nextInt();
-        }
+        secondarySort = selectSortMethod();
+
         controller.advancedSort(primarySort, secondarySort);
         System.out.println("The superheros have been sorted.\n");
     }
@@ -166,6 +145,18 @@ public class UserInterface {
     private boolean inputIsValid(int minimumInput, int maximumInput, int actualInput) {
         return actualInput >= minimumInput && actualInput <= maximumInput;
     }
+
+    private int selectSortMethod() {
+        printAttributesListed();
+        int userSelection = input.nextInt();
+
+        while (!inputIsValid(1, 6, userSelection)) {
+            System.out.println("Invalid input. Try again:");
+            userSelection = input.nextInt();
+        }
+        return userSelection;
+    }
+
 
     private void printAttributesListed(){
         System.out.println("""
