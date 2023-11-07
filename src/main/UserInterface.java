@@ -116,10 +116,6 @@ public class UserInterface {
             System.out.println("Invalid selection!\nTry again!");
             input.nextLine();
             deleteSuperhero();
-
-            /*controller.deleteSuperhero(input.nextInt());
-            System.out.println("The superhero has been deleted from the database \n");
-            saveSuperheros();*/
         }
     }
 
