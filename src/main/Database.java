@@ -3,8 +3,7 @@ package main;
 import comparator.*;
 
 import java.io.IOException;
-import  java.util.ArrayList;
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.Comparator;
 
 public class Database {
@@ -158,6 +157,10 @@ public class Database {
 
     public String printSuperheroAttributesIndexed(int indexOfSuperhero) {
         return superheroesArrayList.get(indexOfSuperhero).printSuperheroAttributesIndexed();
+    }
+
+    public int getNumberOfSuperherosInDatabase() {
+        return superheroesArrayList.size();
     }
 
     private Comparator createComparator(int selection){

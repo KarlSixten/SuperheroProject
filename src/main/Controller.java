@@ -55,6 +55,10 @@ public class Controller {
         return superheroDatabase.printSuperheroAttributesIndexed(indexOfSuperhero);
     }
 
+    public int getNumberOfSuperherosInDatabase() {
+        return superheroDatabase.getNumberOfSuperherosInDatabase();
+    }
+
     public returnMessage editSuperhero(int indexOfSuperhero, int attributeToEdit, String newValue) {
         return superheroDatabase.editSuperhero(indexOfSuperhero, attributeToEdit, newValue);
     }

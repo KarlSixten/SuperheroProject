@@ -15,23 +15,18 @@ public class UserInterface {
     public void startProgram(){
         while (uiIsrunning){
             showMainMenu();
-          try {
-              switch (input.nextInt()){
-                  case 1 -> addSuperhero();
-                  case 2 -> showSuperheros();
-                  case 3 -> searchSuperhero();
-                  case 4 -> editSuperhero();
-                  case 5 -> deleteSuperhero();
-                  case 6 -> saveSuperheros();
-                  case 7 -> simpleSort();
-                  case 8 -> advancedSort();
-                  case 9 -> exitProgram();
-                  default -> System.out.println("Enter valid number.");
-              }
-          }catch (InputMismatchException e){
-              System.out.println("Invalid input, try again. MAIN MENU\n");
-                input.nextLine(); // reset af scanner bug
-          }
+            switch (takeUserInput()){
+                case 1 -> addSuperhero();
+                case 2 -> showSuperheros();
+                case 3 -> searchSuperhero();
+                case 4 -> editSuperhero();
+                case 5 -> deleteSuperhero();
+                case 6 -> saveSuperheros();
+                case 7 -> simpleSort();
+                case 8 -> advancedSort();
+                case 9 -> exitProgram();
+                default -> System.out.println("Enter valid number.");
+            }
         }
     }
     private void showMainMenu(){
@@ -81,12 +76,12 @@ public class UserInterface {
         //Asks the user which superhero to edit, and converts it into index for ArrayList
         System.out.println(controller.printSuperheroNames());
         System.out.println("Select the superhero you'd like to edit: ");
-        int indexOfSuperheroToEdit = input.nextInt() - 1;
+        int indexOfSuperheroToEdit = takeUserInput() - 1;
 
         //Asks the user which attribute they'd like to edit and converts to int for switch case
         System.out.println("What would you like to edit?");
         System.out.println(controller.printSuperheroAttributesIndexed(indexOfSuperheroToEdit));
-        int attributeToEdit = input.nextInt();
+        int attributeToEdit = takeUserInput();
 
         //Asks the user for the new value, input is taken in later method call
         System.out.println("New value:");
@@ -101,30 +96,28 @@ public class UserInterface {
         saveSuperheros();
     }
 
-
     private void deleteSuperhero() {
         System.out.println(controller.printSuperheroNamesWithIndex());
         System.out.println("Select the superhero you want to delete:");
-        try {
-            controller.deleteSuperhero(input.nextInt());
-            System.out.println("The superhero has been deleted from the database.");
-            saveSuperheros();
-        } catch (InputMismatchException|IndexOutOfBoundsException e) {
-            System.out.println("Invalid selection!\nTry again!");
-            input.nextLine();
-            deleteSuperhero();
+
+        int userSelection = takeUserInput();
+
+        while (!inputIsValid(1, controller.getNumberOfSuperherosInDatabase(), userSelection)) {
+            System.out.println("Invalid selection! Try again:");
+            userSelection = takeUserInput();
         }
+        System.out.println("The superhero has been deleted from the database.");
+        saveSuperheros();
     }
 
     private void saveSuperheros() {
         controller.saveSuperheros();
-        System.out.println("All superheroes have been saved.");
+        System.out.println("All superheroes have been saved.\n");
     }
 
     private void simpleSort() {
         System.out.println("How would you like to sort the superheros?");
         controller.simpleSort(selectSortMethod());
-
         System.out.println("The superheros have been sorted.\n");
     }
 
@@ -148,15 +141,14 @@ public class UserInterface {
 
     private int selectSortMethod() {
         printAttributesListed();
-        int userSelection = input.nextInt();
+        int userSelection = takeUserInput();
 
         while (!inputIsValid(1, 6, userSelection)) {
-            System.out.println("Invalid input. Try again:");
-            userSelection = input.nextInt();
+            System.out.println("Invalid input! Try again:");
+            userSelection = takeUserInput();
         }
         return userSelection;
     }
-
 
     private void printAttributesListed(){
         System.out.println("""
@@ -167,6 +159,19 @@ public class UserInterface {
                 4. Year created.
                 5. If the superhero is human.
                 6. Their strength.""");
+    }
+
+    private int takeUserInput() {
+        String inputString = input.nextLine();
+        int inputInt = 0;
+
+        try {
+            inputInt = Integer.parseInt(inputString);
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid input! Try again:");
+            inputInt = takeUserInput();
+        }
+        return inputInt;
     }
 
     private void exitProgram() {
