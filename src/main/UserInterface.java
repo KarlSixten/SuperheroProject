@@ -185,7 +185,7 @@ public class UserInterface {
         try {
             inputInt = Integer.parseInt(inputString);
         } catch (NumberFormatException e) {
-            System.out.println(" ");
+            System.out.println("Invalid input! Try again:");
             inputInt = takeUserInput();
         }
         return inputInt;
