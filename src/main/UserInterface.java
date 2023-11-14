@@ -125,31 +125,14 @@ public class UserInterface {
         int primarySort;
         int secondarySort;
 
-        List<Integer> availableSortOptions = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6)); // Create a list of available options
-
         System.out.println("Select the primary sorting method");
-        printAttributesListed();
-
-        primarySort = input.nextInt();
-
-        while (!availableSortOptions.contains(primarySort)) {
-            System.out.println("Invalid input! Try again:");
-            primarySort = input.nextInt();
-        }
-
-        availableSortOptions.remove(Integer.valueOf(primarySort)); // Remove the primary sort option
+        primarySort = selectSortMethod();
 
         System.out.println("Select the secondary sorting method:");
-        printAvailableAttributes(availableSortOptions);
-
-        secondarySort = input.nextInt();
-
-        while (!availableSortOptions.contains(secondarySort)) {
-            System.out.println("Invalid input! Try again:");
-            secondarySort = input.nextInt();
-        }
+        secondarySort = selectSortMethod();
 
         controller.advancedSort(primarySort, secondarySort);
+        System.out.println("The superheros have been sorted.\n");
     }
 
     private boolean inputIsValid(int minimumInput, int maximumInput, int actualInput) {
@@ -194,28 +177,5 @@ public class UserInterface {
     private void exitProgram() {
         uiIsrunning = false;
         System.out.println("Exiting...");
-    }
-    private void printAvailableAttributes(List<Integer> availableOptions) {
-        System.out.println("Available options for secondary sort:");
-
-        for (int option : availableOptions) {
-            switch (option) {
-                case 1:
-                    System.out.println("1. Real name.");
-                    break;
-                case 2:
-                    System.out.println("2. Superpower.");
-                    break;
-                case 3:
-                    System.out.println("3. Year created.");
-                    break;
-                case 4:
-                    System.out.println("4. If the superhero is human.");
-                    break;
-                case 5:
-                    System.out.println("5. Their strength.");
-                    break;
-            }
-        }
     }
 }
